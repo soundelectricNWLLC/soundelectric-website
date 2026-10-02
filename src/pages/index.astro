@@ -21,7 +21,7 @@ const creds = [
   { icon: 'BadgeCheck', title: 'WA Licensed Electrical Contractor', text: `License ${SITE.license}`, href: SITE.licenseVerifyUrl, link: 'Verify at L&I' },
   { icon: 'ShieldCheck', title: 'Licensed, Bonded & Insured', text: 'Ask us for proof of coverage for your project file.' },
   { icon: 'Building2', title: 'Commercial Focus', text: 'Business and commercial property work.' },
-  { icon: 'Headset', title: 'Direct Line to the Owner', text: `Talk to ${SITE.owner} about your scope.` },
+  { icon: 'Stethoscope', title: 'Dental & Vet Clinic Specialists', text: 'Electrical planned around your clinic equipment.' },
 ];
 const steps = [
   { n: '01', title: 'Site walk & scope', text: 'We review drawings, existing equipment and site conditions, and confirm exactly what you need done.' },
@@ -194,17 +194,17 @@ const steps = [
   <section class="container-x mt-24 sm:mt-32">
     <div class="card grid items-center gap-10 overflow-hidden p-6 sm:p-10 lg:grid-cols-2 lg:p-14">
       <div class="order-2 lg:order-1">
-        <span class="eyebrow">Service &amp; panel upgrades</span>
-        <h2 class="mt-4 text-3xl font-semibold sm:text-4xl">Commercial bolt-on panelboards, installed right.</h2>
-        <p class="mt-5 leading-relaxed text-slate-400">Commercial spaces need commercial gear. We install bolt-on lighting and appliance panelboards with properly sized mains and feeders, neat terminations and a typed circuit directory, so your facility team can find any circuit quickly.</p>
+        <span class="eyebrow">Panel upgrades &amp; service</span>
+        <h2 class="mt-4 text-3xl font-semibold sm:text-4xl">Panel upgrades, inspections &amp; torque service.</h2>
+        <p class="mt-5 leading-relaxed text-slate-400">Clinics, offices and restaurants need panels with room for their equipment and connections that stay tight. We upgrade and replace commercial panels when you need more capacity, inspect existing panels, and check and re-torque terminations and lugs to the manufacturer's specifications. We leave a typed circuit directory so your staff can find any circuit quickly.</p>
         <ul class="mt-7 grid gap-3 text-sm sm:grid-cols-2">
-          {['Load calculations first', 'Bolt-on branch breakers', 'Typed circuit directories', 'Utility & inspector coordination'].map((t) => (
+          {['Panel upgrades & replacements', 'Panel inspections', 'Torque checks to manufacturer spec', 'Load calcs & utility coordination'].map((t) => (
             <li class="flex items-center gap-2.5 text-slate-200"><Icon name="CircleCheck" class="h-4 w-4 text-volt-400" />{t}</li>
           ))}
         </ul>
-        <a href="/services/#service-panel-upgrades" class="btn btn-ghost mt-9">Panel upgrade details <Icon name="ArrowRight" class="h-4 w-4" /></a>
+        <a href="/services/#service-panel-upgrades" class="btn btn-ghost mt-9">Panel service details <Icon name="ArrowRight" class="h-4 w-4" /></a>
       </div>
-      <!-- Panel photo: Eaton Pow-R-Line panelboard (replaces the Panelboard.astro SVG illustration) -->
+      {/* Panel photo: Eaton Pow-R-Line panelboard (replaces the Panelboard.astro SVG illustration). */}
       <figure class="relative order-1 mx-auto w-full max-w-[290px] sm:max-w-[340px] lg:order-2">
         <div class="absolute inset-10 rounded-full bg-volt-400/15 blur-3xl"></div>
         <div class="card relative overflow-hidden rounded-[1.75rem] p-2.5 sm:p-3">

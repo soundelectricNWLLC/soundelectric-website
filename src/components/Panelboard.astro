@@ -1,13 +1,13 @@
 ---
 /**
- * Illustration of a commercial bolt-on lighting & appliance panelboard
+ * Illustration of a commercial lighting & appliance panelboard
  * (modeled on an Eaton Pow-R-Line 1a / PRL1a-style layout): gray steel
- * enclosure, main breaker at top, two vertical columns of bolt-on branch
+ * enclosure, main breaker at top, two vertical columns of branch
  * breakers, deadfront, hinged door with a typed circuit directory.
  * Original artwork; it contains no manufacturer logos or product photos.
  *
  * mode="deadfront": door open + deadfront in place (what a customer sees)
- * mode="interior":  deadfront removed, showing copper bus, neutral bars and bolt-on breakers
+ * mode="interior":  deadfront removed, showing copper bus, neutral bars and breakers
  */
 interface Props { mode?: 'deadfront' | 'interior'; door?: boolean; uid?: string; class?: string; title?: string; }
 const {
@@ -15,7 +15,7 @@ const {
   door = true,
   uid = 'pb',
   class: cls = '',
-  title = 'Illustration of a commercial bolt-on panelboard with main breaker, two columns of bolt-on branch breakers and a typed circuit directory',
+  title = 'Illustration of a commercial panelboard with main breaker, two columns of branch breakers and a typed circuit directory',
 } = Astro.props;
 
 type Slot = { p: number; a?: number; label?: string; space?: boolean };
