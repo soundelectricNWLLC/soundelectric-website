@@ -27,7 +27,7 @@ const serviceSchema = [
 ---
 <Base
   title="Commercial Electrical Services | Commercial Electrician Seattle | Sound Electric"
-  description="Commercial electrician for the Greater Seattle Area: tenant improvements, build-outs, LED retrofits, panel upgrades, EV charging and service work. Dental office, veterinary clinic and restaurant electrician."
+  description="Commercial electrician for the Greater Seattle Area: tenant improvements, build-outs, LED retrofits, panel upgrades and inspections, EV charging and service work. Dental office, veterinary clinic and restaurant electrician."
   jsonLd={serviceSchema}>
   <PageHero eyebrow="Services" title='Commercial electrical services for the <span class="text-gradient">Greater Seattle Area</span>.'
     lead="One licensed, bonded and insured contractor for the electrical scope on commercial projects: from a single panel to a full build-out.">
@@ -66,8 +66,8 @@ const serviceSchema = [
           </div>
           <div class:list={[panel ? 'lg:col-span-6' : 'lg:col-span-5']}>
             {panel ? (
-              <!-- Panel photos (Jeremiah's own). Lead: Eaton Pow-R-Line. The SVG in src/components/Panelboard.astro is no longer shown here. -->
               <div class="relative rounded-2xl border border-white/[0.07] bg-night-950/50 p-3 sm:p-5">
+                {/* Panel photos. Lead: Eaton Pow-R-Line. The SVG in src/components/Panelboard.astro is no longer shown here. */}
                 <div class="pointer-events-none absolute inset-12 rounded-full bg-volt-400/10 blur-3xl"></div>
                 <div class="relative grid gap-3 sm:grid-cols-5 sm:gap-4">
                   <figure class="sm:col-span-3">
@@ -103,7 +103,7 @@ const serviceSchema = [
                     <figcaption class="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-slate-400">Siemens · 42-circuit</figcaption>
                   </figure>
                 </div>
-                <p class="relative mt-4 text-xs leading-relaxed text-slate-400">Commercial bolt-on panelboards from our panel work.</p>
+                <p class="relative mt-4 text-xs leading-relaxed text-slate-400">Commercial panelboards from our panel work.</p>
               </div>
             ) : scope}
           </div>

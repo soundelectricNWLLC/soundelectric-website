@@ -12,7 +12,6 @@ export const SITE = {
   email: 'jeremiah@soundelectric.com',
   license: 'SOUNDEN771M6',
   licenseVerifyUrl: 'https://secure.lni.wa.gov/verify/',
-  owner: 'Jeremiah',
   tagline: 'Commercial electrical contractor serving the Greater Seattle Area',
 };
 
@@ -68,12 +67,12 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'service-panel-upgrades',
-    title: 'Service & Panel Upgrades',
+    title: 'Panel Upgrades, Inspections & Torque Service',
     icon: 'Gauge',
-    short: 'More capacity for growing loads: commercial panelboards, sub-panels and service upgrades.',
-    body: 'New equipment, EV chargers and tenant changes can push an existing service past its limits. We run load calculations, replace or add commercial bolt-on panelboards and sub-panels, and handle service upgrades, coordinating with the serving utility and the inspector so the cutover goes smoothly.',
-    includes: ['Load calculations and capacity planning', 'Commercial panelboard replacement and additions', 'Sub-panels and feeders', 'Service upgrades with utility coordination', 'Updated, typed circuit directories'],
-    goodFor: 'Buildings adding equipment, tenants or EV charging',
+    short: 'Panel and service upgrades, inspections of existing panels, and torque checks on terminations and lugs.',
+    body: 'New equipment, EV chargers and tenant changes can push an existing panel or service past its limits. We run load calculations, upgrade, replace or add commercial panels and sub-panels, and handle service upgrades, coordinating with the serving utility and the inspector. For panels already in service, we inspect them and check and re-torque terminations and lugs to the manufacturer\'s specifications.',
+    includes: ['Load calculations and capacity planning', 'Panel upgrades, replacements and sub-panels', 'Service upgrades with utility coordination', 'Inspections of existing panels', 'Torque checks on terminations and lugs', 'Updated, typed circuit directories'],
+    goodFor: 'Clinics, offices and restaurants adding equipment, and existing commercial spaces due for a panel check',
   },
   {
     id: 'ev-charging',
