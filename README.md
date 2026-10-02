@@ -1,7 +1,21 @@
 # Sound Electric NW: commercial redesign prototype
 
-Standalone Astro 5 + Tailwind CSS v4 static site. Builds to `dist/` and deploys to Cloudflare Pages as-is:
-build command `npm run build`, output directory `dist`.
+Standalone Astro 5 + Tailwind CSS v4 static site.
+
+## Deploy
+
+The live site is the Cloudflare Worker `soundelectric`, which serves the static assets in `dist/`. Configuration is `wrangler.jsonc`.
+
+```bash
+npm run build
+npx wrangler deploy
+```
+
+To upload a version first and deploy that version separately: `npx wrangler versions upload`, then `npx wrangler versions deploy`.
+
+Build with Node.js 22. Astro 5 needs Node.js 18.20.8+, 20.3+, or 22+.
+
+`public/_headers` sends `X-Robots-Tag: noindex` only on `*.pages.dev` and `*.workers.dev` hosts. Those rules do not apply on soundelectric.com.
 
 ```bash
 npm install
