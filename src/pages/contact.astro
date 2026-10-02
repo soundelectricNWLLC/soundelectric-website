@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { SITE, SERVICES } from '../data/site';
+const field = 'mt-2 block w-full rounded-xl border border-white/10 bg-night-950/60 px-4 py-3 text-white placeholder:text-slate-400 transition focus:border-volt-400/70 focus:outline-none focus:ring-4 focus:ring-volt-400/15';
+const label = 'text-sm font-medium text-slate-200';
+---
+<Base
+  title="Request a Quote | Commercial Electrician Seattle | Sound Electric NW"
+  description="Request a quote from Sound Electric NW LLC, a licensed commercial electrical contractor serving Seattle, King County and the Eastside. Call (425) 971-7987.">
+  <section class="relative overflow-hidden">
+    <div class="bg-grid mask-radial absolute inset-0"></div>
+    <div class="absolute -top-32 left-1/3 h-96 w-[40rem] rounded-full bg-volt-400/10 blur-3xl"></div>
+    <div class="container-x relative grid gap-12 py-16 sm:py-24 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <span class="eyebrow">Contact</span>
+        <h1 class="mt-5 text-4xl font-semibold leading-[1.05] sm:text-6xl">Request a <span class="text-gradient">quote</span>.</h1>
+        <p class="mt-6 text-lg leading-relaxed text-slate-300">Tell us about your commercial project. Drawings, photos of existing equipment and your target schedule all help us scope it accurately.</p>
+
+        <div class="mt-10 space-y-3">
+          <a href={SITE.phoneHref} class="card card-hover group flex items-center gap-4 p-5">
+            <span class="grid h-12 w-12 place-items-center rounded-xl bg-volt-400 text-night-950"><Icon name="Phone" class="h-5 w-5" /></span>
+            <span><span class="block font-mono text-[11px] uppercase tracking-[0.18em] text-slate-400">Call</span><span class="font-display text-xl font-semibold text-white">{SITE.phone}</span></span>
+            <Icon name="ArrowUpRight" class="ml-auto h-5 w-5 text-slate-400 transition group-hover:text-volt-400" />
+          </a>
+          <a href={`mailto:${SITE.email}`} class="card card-hover group flex items-center gap-4 p-5">
+            <span class="grid h-12 w-12 place-items-center rounded-xl border border-volt-400/30 bg-volt-400/10 text-volt-400"><Icon name="Mail" class="h-5 w-5" /></span>
+            <span class="min-w-0"><span class="block font-mono text-[11px] uppercase tracking-[0.18em] text-slate-400">Email</span><span class="block truncate font-display text-lg font-semibold text-white">{SITE.email}</span></span>
+            <Icon name="ArrowUpRight" class="ml-auto h-5 w-5 shrink-0 text-slate-400 transition group-hover:text-volt-400" />
+          </a>
+          <div class="card flex items-center gap-4 p-5">
+            <span class="grid h-12 w-12 place-items-center rounded-xl border border-white/10 bg-night-800 text-volt-400"><Icon name="MapPin" class="h-5 w-5" /></span>
+            <span><span class="block font-mono text-[11px] uppercase tracking-[0.18em] text-slate-400">Service area</span><span class="font-semibold text-white">Seattle, King County &amp; the Eastside</span></span>
+          </div>
+        </div>
+        <a href={SITE.licenseVerifyUrl} target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white"><Icon name="ShieldCheck" class="h-4 w-4 text-volt-400" />Licensed, Bonded &amp; Insured · WA Lic. {SITE.license} · Verify<Icon name="ArrowUpRight" class="h-3.5 w-3.5" /></a>
+      </div>
+
+      <div class="lg:col-span-7">
+        <!-- TODO(wiring): this form is not connected. Hook up to a Cloudflare Pages Function / Worker, Formspree, Web3Forms, etc., and add spam protection (e.g. Cloudflare Turnstile). -->
+        <form id="quote-form" class="card p-6 sm:p-10" action="#" method="post" novalidate data-prototype>
+          <div class="flex items-center justify-between gap-4">
+            <h2 class="text-2xl font-semibold">Project details</h2>
+            <span class="placeholder-tag">Prototype · not wired</span>
+          </div>
+          <div class="mt-8 grid gap-5 sm:grid-cols-2">
+            <label class="block"><span class={label}>Name <span class="text-volt-400">*</span></span><input class={field} name="name" autocomplete="name" required placeholder="Full name" /></label>
+            <label class="block"><span class={label}>Company</span><input class={field} name="company" autocomplete="organization" placeholder="Company or property" /></label>
+            <label class="block"><span class={label}>Email <span class="text-volt-400">*</span></span><input class={field} type="email" name="email" autocomplete="email" required placeholder="you@company.com" /></label>
+            <label class="block"><span class={label}>Phone</span><input class={field} type="tel" name="phone" autocomplete="tel" placeholder="(206) 555-0123" /></label>
+            <label class="block sm:col-span-2"><span class={label}>Project type <span class="text-volt-400">*</span></span>
+              <span class="relative mt-2 block"><select class={field + ' !mt-0 appearance-none pr-12'} name="project_type" id="project_type" required>
+                <option value="" disabled selected>Select a project type</option>
+                {SERVICES.map((s) => <option value={s.id}>{s.title}</option>)}
+                <option value="other">Other commercial work</option>
+              </select><Icon name="ChevronDown" class="pointer-events-none absolute right-4 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-volt-400" /></span>
+            </label>
+            <label class="block sm:col-span-2"><span class={label}>Message <span class="text-volt-400">*</span></span><textarea class={field + ' min-h-[160px] resize-y'} name="message" required placeholder="Site address or area, scope, schedule, and whether drawings are available."></textarea></label>
+          </div>
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p class="text-xs text-slate-400">Prefer to talk? Call <a href={SITE.phoneHref} class="text-slate-300 hover:text-white">{SITE.phone}</a>.</p>
+            <button type="submit" class="btn btn-primary !px-8 !py-4 text-base">Send request <Icon name="Send" class="h-4 w-4" /></button>
+          </div>
+          <p id="form-status" class="mt-5 hidden rounded-xl border border-dashed border-arc-400/50 bg-arc-400/[0.06] p-4 text-sm text-arc-200" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
+<script>
+  const form = document.getElementById('quote-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  const type = new URLSearchParams(location.search).get('type');
+  const sel = document.getElementById('project_type') as HTMLSelectElement | null;
+  if (type && sel && [...sel.options].some((o) => o.value === type)) sel.value = type;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (status) {
+      status.textContent = 'Prototype: this form is not connected yet, so nothing was sent. Please call (425) 971-7987 or email jeremiah@soundelectric.com.';
+      status.classList.remove('hidden');
+    }
+  });
+</script>

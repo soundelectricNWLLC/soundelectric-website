@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import { SITE } from '../data/site';
+interface Props { heading?: string; text?: string; }
+const { heading = 'Planning a build-out, upgrade or retrofit?', text = 'Send us drawings, photos or a quick description of the scope. We will follow up to talk through the details and next steps.' } = Astro.props;
+---
+<section class="container-x mt-24 sm:mt-32">
+  <div class="relative overflow-hidden rounded-3xl border border-volt-400/25 bg-night-850 px-6 py-14 sm:px-14 sm:py-20">
+    <div class="bg-grid mask-radial absolute inset-0 opacity-70"></div>
+    <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-volt-400/20 blur-3xl"></div>
+    <div class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-arc-400/10 blur-3xl"></div>
+    <div class="relative flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-center">
+      <div class="max-w-2xl">
+        <span class="eyebrow">Request a quote</span>
+        <h2 class="mt-4 text-3xl font-semibold leading-tight sm:text-5xl">{heading}</h2>
+        <p class="mt-5 text-lg leading-relaxed text-slate-300">{text}</p>
+      </div>
+      <div class="flex w-full flex-col gap-3 sm:w-auto sm:min-w-[280px]">
+        <a href="/contact/" class="btn btn-primary !px-7 !py-4 text-base">Request a Quote <Icon name="ArrowRight" class="h-4 w-4" /></a>
+        <a href={SITE.phoneHref} class="btn btn-ghost !px-7 !py-4 text-base"><Icon name="Phone" class="h-4 w-4 text-volt-400" />{SITE.phone}</a>
+        <a href={`mailto:${SITE.email}`} class="mt-1 text-center text-sm text-slate-400 transition hover:text-white">{SITE.email}</a>
+      </div>
+    </div>
+  </div>
+</section>

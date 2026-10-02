@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Icon from '../components/Icon.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { PROJECTS } from '../data/projects';
+---
+<Base
+  title="Commercial Electrical Projects | Sound Electric NW, Seattle"
+  description="Commercial electrical projects by Sound Electric NW LLC across Seattle, King County and the Eastside: tenant improvements, LED retrofits, panel upgrades and EV charging.">
+  <PageHero eyebrow="Projects" title="Commercial work across greater Seattle."
+    lead="Tenant improvements, retrofits, panel upgrades and EV charging for businesses in Seattle, King County and the Eastside." />
+
+  <section class="container-x mt-12">
+    <div class="flex items-start gap-4 rounded-2xl border border-dashed border-arc-400/50 bg-arc-400/[0.05] p-5 sm:p-6">
+      <Icon name="Info" class="mt-0.5 h-5 w-5 text-arc-300" />
+      <p class="text-sm leading-relaxed text-arc-200"><strong class="font-semibold">Prototype note:</strong> every card below is a placeholder. Replace each one with a real commercial job: a job-site photo, the city or neighborhood, the year and a short, accurate scope. Remove any card you can't fill with real details.</p>
+    </div>
+  </section>
+
+  <section class="container-x mt-10">
+    <h2 class="sr-only">Project list</h2>
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {PROJECTS.map((p) => <ProjectCard p={p} detailed />)}
+    </div>
+  </section>
+
+  <FinalCTA heading="Have a project like these?" />
+</Base>

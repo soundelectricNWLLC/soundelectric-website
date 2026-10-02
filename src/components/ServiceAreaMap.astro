@@ -1,0 +1,46 @@
+---
+// Stylized (not to scale) map of the greater Seattle service area. Positions are approximate.
+const pts: [string, number, number, ('l'|'r')?][] = [
+  ['Shoreline', 88, 52, 'r'], ['Bothell', 292, 47], ['Woodinville', 356, 54, 'r'],
+  ['Kirkland', 286, 139], ['Redmond', 418, 147], ['Seattle', 102, 226, 'r'],
+  ['Bellevue', 298, 222], ['Sammamish', 546, 215], ['Mercer Island', 251, 272, 'l'],
+  ['Issaquah', 550, 315, 'l'], ['Renton', 274, 371], ['Tukwila', 190, 381, 'l'],
+];
+const hub = [102, 226];
+---
+<svg viewBox="0 0 620 430" class="h-auto w-full" role="img" aria-label="Stylized map of the Sound Electric NW service area: Seattle, King County and Eastside cities">
+  <defs>
+    <radialGradient id="sa-glow" cx="0.3" cy="0.5" r="0.7"><stop offset="0" stop-color="#ffd91a" stop-opacity=".18"/><stop offset="1" stop-color="#ffd91a" stop-opacity="0"/></radialGradient>
+    <pattern id="sa-dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#94a3b8" fill-opacity=".14"/></pattern>
+  </defs>
+  <rect width="620" height="430" fill="url(#sa-dots)"/>
+  <rect width="620" height="430" fill="url(#sa-glow)"/>
+  <!-- Puget Sound (stylized) -->
+  <path d="M0 0 H62 C70 60 48 120 66 170 C80 210 60 250 74 300 C86 350 70 400 92 430 H0 Z" fill="#0fc3dd" fill-opacity=".07"/>
+  <path d="M62 0 C70 60 48 120 66 170 C80 210 60 250 74 300 C86 350 70 400 92 430" fill="none" stroke="#3ee0f5" stroke-opacity=".3"/>
+  <!-- Lake Washington (stylized) with Mercer Island -->
+  <path d="M190 34 C204 86 196 128 210 168 C220 200 204 232 212 262 C218 300 222 334 246 362 L264 356 C252 322 262 290 270 256 C278 220 264 190 272 158 C280 118 262 76 238 34 Z" fill="#0fc3dd" fill-opacity=".09" stroke="#3ee0f5" stroke-opacity=".3"/>
+  <path d="M248 238 C256 250 260 278 254 304 C246 296 242 262 248 238 Z" fill="#0a101c" stroke="#3ee0f5" stroke-opacity=".3"/>
+  <!-- Lake Sammamish (stylized) -->
+  <path d="M486 196 C496 226 494 262 506 300 C498 302 490 296 486 288 C476 256 478 226 476 198 Z" fill="#0fc3dd" fill-opacity=".09" stroke="#3ee0f5" stroke-opacity=".3"/>
+  <!-- range rings -->
+  {[120, 240, 360].map((r) => <circle cx={hub[0]} cy={hub[1]} r={r} fill="none" stroke="#ffd91a" stroke-opacity=".12" stroke-dasharray="2 6"/>)}
+  <!-- connections -->
+  {pts.filter(p => p[0] !== 'Seattle').map(([, x, y]) => (
+    <path d={`M${hub[0]} ${hub[1]} Q ${(hub[0] + x) / 2} ${Math.min(hub[1], y) - 30} ${x} ${y}`} fill="none" stroke="#ffd91a" stroke-opacity=".28" stroke-width="1" class="animate-dash"/>
+  ))}
+  {pts.map(([name, x, y, side]) => {
+    const isHub = name === 'Seattle';
+    const anchor = side === 'l' ? 'end' : side === 'r' ? 'start' : 'middle';
+    const tx = side === 'l' ? x - 12 : side === 'r' ? x + 12 : x;
+    const ty = side ? y + 4 : y - 12;
+    return (
+      <g>
+        {isHub && <circle cx={x} cy={y} r="16" fill="#ffd91a" fill-opacity=".15" class="animate-pulse-dot"/>}
+        <circle cx={x} cy={y} r={isHub ? 7 : 4.5} fill={isHub ? '#ffd91a' : '#0a101c'} stroke="#ffd91a" stroke-width={isHub ? 0 : 1.5}/>
+        <text x={tx} y={ty} text-anchor={anchor} font-family="Inter Variable, sans-serif" font-size={isHub ? 15 : 12} font-weight={isHub ? 700 : 500} fill={isHub ? '#ffffff' : '#cbd5e1'}>{name}</text>
+      </g>
+    );
+  })}
+  <text x="606" y="420" text-anchor="end" font-family="ui-monospace,monospace" font-size="9" fill="#64748b" letter-spacing="1">STYLIZED · NOT TO SCALE</text>
+</svg>

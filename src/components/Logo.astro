@@ -1,0 +1,18 @@
+---
+interface Props { class?: string; }
+const { class: cls = '' } = Astro.props;
+---
+<span class:list={['flex items-center gap-3', cls]}>
+  <svg viewBox="0 0 40 40" class="h-9 w-9 shrink-0" aria-hidden="true">
+    <defs>
+      <linearGradient id="lg-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#16213a"/><stop offset="1" stop-color="#070b14"/></linearGradient>
+      <linearGradient id="lg-bolt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0a3"/><stop offset="1" stop-color="#f5c400"/></linearGradient>
+    </defs>
+    <rect x="1" y="1" width="38" height="38" rx="10" fill="url(#lg-bg)" stroke="#ffd91a" stroke-opacity=".55"/>
+    <path d="M22.5 7 11 22.2h7.6L16.8 33 29 17.4h-7.7L22.5 7Z" fill="url(#lg-bolt)"/>
+  </svg>
+  <span class="leading-none">
+    <span class="block font-display text-[17px] font-semibold tracking-tight text-white">Sound Electric <span class="text-volt-400">NW</span></span>
+    <span class="mt-1 block font-mono text-[9.5px] uppercase tracking-[0.2em] text-slate-400">Commercial Electrical</span>
+  </span>
+</span>

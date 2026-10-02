@@ -1,0 +1,45 @@
+---
+// Abstract, non-photographic thumbnail art for placeholder project cards.
+interface Props { variant?: number; class?: string; }
+const { variant = 0, class: cls = '' } = Astro.props;
+const v = variant % 6;
+const uid = `pa${v}-${Math.random().toString(36).slice(2, 7)}`;
+---
+<svg viewBox="0 0 400 240" class={cls} aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id={`${uid}-bg`} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#16213a"/><stop offset="1" stop-color="#070b14"/></linearGradient>
+    <radialGradient id={`${uid}-g`} cx=".7" cy=".3" r=".8"><stop offset="0" stop-color={v % 2 ? '#3ee0f5' : '#ffd91a'} stop-opacity=".28"/><stop offset="1" stop-opacity="0"/></radialGradient>
+    <pattern id={`${uid}-grid`} width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#94a3b8" stroke-opacity=".08"/></pattern>
+  </defs>
+  <rect width="400" height="240" fill={`url(#${uid}-bg)`}/>
+  <rect width="400" height="240" fill={`url(#${uid}-grid)`}/>
+  <rect width="400" height="240" fill={`url(#${uid}-g)`}/>
+  {v === 0 && (<g stroke="#ffd91a" stroke-opacity=".7" fill="none" stroke-width="1.5">
+    <rect x="60" y="50" width="280" height="140" rx="4" stroke-opacity=".35"/>
+    <path d="M60 120H170V50M170 120H340M250 120V190M110 120V190"/>
+    {[[110,85],[215,85],[300,85],[150,155],[205,155],[300,155]].map(([x,y]) => <circle cx={x} cy={y} r="5" fill="#ffd91a" fill-opacity=".8" stroke="none"/>)}
+  </g>)}
+  {v === 1 && (<g fill="none" stroke="#3ee0f5" stroke-width="1.5">
+    {[0,1,2,3,4].map(i => <line x1={70+i*65} y1="60" x2={70+i*65} y2="180" stroke-opacity=".25"/>)}
+    {[0,1,2,3,4].map(i => <g><rect x={50+i*65} y="70" width="40" height="8" rx="4" fill="#3ee0f5" fill-opacity=".85" stroke="none"/><path d={`M${55+i*65} 82 L${40+i*65} 180 H${100+i*65} L${85+i*65} 82Z`} fill="#3ee0f5" fill-opacity=".07" stroke="none"/></g>)}
+  </g>)}
+  {v === 2 && (<g>
+    <rect x="150" y="40" width="100" height="160" rx="5" fill="#9ba2a9" fill-opacity=".9"/>
+    <rect x="160" y="50" width="80" height="140" rx="3" fill="#b3b9bf"/>
+    <rect x="182" y="58" width="36" height="24" rx="2" fill="#1b1d21"/>
+    {Array.from({length: 9}, (_, i) => <g><rect x="168" y={90+i*11} width="30" height="9" rx="1" fill="#1b1d21"/><rect x="202" y={90+i*11} width="30" height="9" rx="1" fill="#1b1d21"/></g>)}
+    <path d="M250 120 H340 M60 120 H150" stroke="#ffd91a" stroke-width="2" stroke-dasharray="4 6" opacity=".7"/>
+  </g>)}
+  {v === 3 && (<g fill="none" stroke="#ffd91a" stroke-width="2">
+    {[0,1,2].map(i => <g><rect x={90+i*85} y="70" width="50" height="100" rx="10" stroke-opacity=".8"/><path d={`M${115+i*85} 95 l-8 18 h12 l-8 18`} stroke-linejoin="round"/><path d={`M${115+i*85} 170 V200 H${115+i*85+30}`} stroke-opacity=".4"/></g>)}
+  </g>)}
+  {v === 4 && (<g fill="none" stroke="#3ee0f5" stroke-width="1.5">
+    <path d="M30 150 H110 L130 90 L150 200 L170 60 L190 170 L210 130 H370" stroke-opacity=".9" stroke-linejoin="round"/>
+    <circle cx="200" cy="120" r="70" stroke-opacity=".2"/><circle cx="200" cy="120" r="40" stroke-opacity=".3"/>
+  </g>)}
+  {v === 5 && (<g fill="none" stroke="#ffd91a" stroke-width="1.5">
+    <path d="M70 190 V90 L200 50 L330 90 V190 Z" stroke-opacity=".5"/>
+    {[0,1,2,3].map(i => <rect x={100+i*55} y="110" width="35" height="50" rx="2" stroke-opacity=".8"/>)}
+    <path d="M70 190 H330" stroke-opacity=".9"/>
+  </g>)}
+</svg>

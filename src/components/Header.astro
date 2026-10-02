@@ -1,0 +1,52 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { SITE, NAV } from '../data/site';
+const path = Astro.url.pathname.replace(/\/?$/, '/');
+---
+<header class="sticky top-0 z-50 border-b border-white/[0.07] bg-night-900/75 backdrop-blur-xl supports-[backdrop-filter]:bg-night-900/60">
+  <div class="container-x flex h-[72px] items-center justify-between gap-6">
+    <a href="/" class="rounded-lg"><Logo /></a>
+
+    <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
+      {NAV.map((n) => {
+        const active = path.startsWith(n.href);
+        return (
+          <a href={n.href} aria-current={active ? 'page' : undefined}
+             class:list={['relative rounded-lg px-3.5 py-2 text-sm font-medium transition-colors hover:text-white', active ? 'text-white' : 'text-slate-400']}>
+            {n.label}
+            {active && <span class="absolute inset-x-3.5 -bottom-[17px] h-px bg-volt-400"></span>}
+          </a>
+        );
+      })}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={SITE.phoneHref} class="group hidden items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-semibold text-white transition hover:text-volt-300 lg:flex">
+        <span class="grid h-8 w-8 place-items-center rounded-lg border border-volt-400/30 bg-volt-400/10 text-volt-400 transition group-hover:bg-volt-400 group-hover:text-night-950"><Icon name="Phone" class="h-4 w-4" /></span>
+        {SITE.phone}
+      </a>
+      <a href="/contact/" class="btn btn-primary hidden !py-2.5 sm:inline-flex">Request a Quote</a>
+      <a href={SITE.phoneHref} class="grid h-10 w-10 place-items-center rounded-xl bg-volt-400 text-night-950 lg:hidden" aria-label={`Call ${SITE.phone}`}><Icon name="Phone" class="h-[18px] w-[18px]" /></a>
+      <button id="nav-toggle" type="button" class="grid h-10 w-10 place-items-center rounded-xl border border-white/15 text-white md:hidden" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <Icon name="Menu" class="h-5 w-5" />
+      </button>
+    </div>
+  </div>
+  <div id="mobile-nav" class="hidden border-t border-white/[0.07] bg-night-900/95 md:hidden">
+    <nav class="container-x flex flex-col py-3" aria-label="Mobile">
+      {NAV.map((n) => <a href={n.href} class="flex items-center justify-between border-b border-white/[0.06] py-3.5 text-base font-medium text-white last:border-0">{n.label}<Icon name="ArrowRight" class="h-4 w-4 text-slate-400" /></a>)}
+      <a href="/contact/" class="btn btn-primary mt-3 w-full">Request a Quote</a>
+    </nav>
+  </div>
+</header>
+<script>
+  const t = document.getElementById('nav-toggle');
+  const m = document.getElementById('mobile-nav');
+  t?.addEventListener('click', () => {
+    const open = t.getAttribute('aria-expanded') === 'true';
+    t.setAttribute('aria-expanded', String(!open));
+    t.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+    m?.classList.toggle('hidden', open);
+  });
+</script>

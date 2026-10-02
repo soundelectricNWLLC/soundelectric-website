@@ -1,0 +1,7 @@
+---
+import * as icons from 'lucide-static';
+interface Props { name: string; class?: string; }
+const { name, class: cls = 'h-5 w-5' } = Astro.props;
+const svg = (icons as Record<string, string>)[name] ?? (icons as Record<string, string>).Zap;
+---
+<span class:list={['icon-svg inline-block shrink-0', cls]} aria-hidden="true" set:html={svg} />

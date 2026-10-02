@@ -1,0 +1,88 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/space-grotesk';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import { SITE, SERVICE_AREAS, SERVICES } from '../data/site';
+
+interface Props { title: string; description: string; jsonLd?: Record<string, unknown>[]; }
+const { title, description, jsonLd = [] } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const ogImage = new URL('/og-image.png', SITE.url).href;
+
+// Service-area business: intentionally NO street address (none is published).
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'Electrician',
+  '@id': `${SITE.url}/#business`,
+  name: SITE.name,
+  alternateName: SITE.shortName,
+  url: SITE.url,
+  telephone: '+1-425-971-7987',
+  email: SITE.email,
+  logo: `${SITE.url}/favicon.svg`,
+  image: ogImage,
+  description: 'Licensed, bonded and insured commercial electrical contractor serving Seattle, King County and the Eastside.',
+  areaServed: [
+    { '@type': 'City', name: 'Seattle', containedInPlace: { '@type': 'State', name: 'Washington' } },
+    { '@type': 'AdministrativeArea', name: 'King County, Washington' },
+    ...SERVICE_AREAS.filter((c) => c !== 'Seattle').map((c) => ({ '@type': 'City', name: `${c}, WA` })),
+  ],
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    credentialCategory: 'license',
+    name: `Washington State Electrical Contractor License ${SITE.license}`,
+    recognizedBy: { '@type': 'GovernmentOrganization', name: 'Washington State Department of Labor & Industries', url: 'https://lni.wa.gov/' },
+  },
+  knowsAbout: SERVICES.map((s) => s.title),
+  makesOffer: SERVICES.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.title, url: `${SITE.url}/services/#${s.id}` } })),
+};
+const schemas = [business, ...jsonLd];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#070b14" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sound Electric NW: commercial electrical contractor, Seattle" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="geo.region" content="US-WA" />
+    <meta name="geo.placename" content="Seattle" />
+    {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body class="min-h-screen bg-night-900 pb-20 md:pb-0">
+    <a href="#main" class="sr-only z-[60] rounded-lg bg-volt-400 px-4 py-2 font-semibold text-night-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
+    <!-- Mobile action bar -->
+    <div class="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-night-950/90 p-3 backdrop-blur-xl md:hidden">
+      <div class="grid grid-cols-2 gap-2.5">
+        <a href={SITE.phoneHref} class="btn btn-ghost !py-3"><Icon name="Phone" class="h-4 w-4 text-volt-400" />Call now</a>
+        <a href="/contact/" class="btn btn-primary !py-3">Request a Quote</a>
+      </div>
+    </div>
+  </body>
+</html>
