@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+---
+<Base title="Page not found | Sound Electric NW" description="The page you were looking for could not be found.">
+  <section class="container-x py-32 text-center">
+    <p class="font-mono text-sm text-volt-400">404</p>
+    <h1 class="mt-4 text-4xl font-semibold sm:text-6xl">Circuit not found.</h1>
+    <p class="mt-5 text-slate-400">That page doesn't exist. Head home or give us a call.</p>
+    <div class="mt-10 flex justify-center gap-3"><a href="/" class="btn btn-primary">Back home</a><a href={SITE.phoneHref} class="btn btn-ghost">{SITE.phone}</a></div>
+  </section>
+</Base>

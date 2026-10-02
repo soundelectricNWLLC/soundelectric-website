@@ -1,0 +1,216 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Panelboard from '../components/Panelboard.astro';
+import ServiceAreaMap from '../components/ServiceAreaMap.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import FAQ from '../components/FAQ.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import { SITE, SERVICES, SERVICE_AREAS } from '../data/site';
+import { PROJECTS } from '../data/projects';
+
+const creds = [
+  { icon: 'BadgeCheck', title: 'WA Licensed Electrical Contractor', text: `License ${SITE.license}`, href: SITE.licenseVerifyUrl, link: 'Verify at L&I' },
+  { icon: 'ShieldCheck', title: 'Licensed, Bonded & Insured', text: 'Ask us for proof of coverage for your project file.' },
+  { icon: 'Building2', title: 'Commercial-Only Focus', text: 'Business and commercial property work, not homes.' },
+  { icon: 'Headset', title: 'Direct Line to the Owner', text: `Talk to ${SITE.owner} about your scope.` },
+];
+const steps = [
+  { n: '01', title: 'Site walk & scope', text: 'We review drawings, existing equipment and site conditions, and confirm exactly what you need done.' },
+  { n: '02', title: 'Clear proposal', text: 'You get a written scope and price with what is included, what is not, and any assumptions spelled out.' },
+  { n: '03', title: 'Permits & scheduling', text: 'We pull the electrical permits and plan the work around your operations and the other trades.' },
+  { n: '04', title: 'Install, inspect, close out', text: 'Clean, code-compliant installation, inspections, updated panel directories and a walkthrough at handoff.' },
+];
+---
+<Base
+  title="Commercial Electrician Seattle | Sound Electric NW LLC"
+  description="Licensed, bonded & insured commercial electrical contractor serving Seattle, King County and the Eastside. Tenant improvements, build-outs, LED retrofits, panel upgrades and EV charging. Call (425) 971-7987.">
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="bg-grid mask-radial absolute inset-0"></div>
+    <div class="absolute -top-40 right-[-10%] h-[36rem] w-[36rem] rounded-full bg-volt-400/[0.13] blur-3xl"></div>
+    <div class="absolute left-[-15%] top-1/3 h-[28rem] w-[28rem] rounded-full bg-arc-400/[0.07] blur-3xl"></div>
+    <div class="container-x relative grid items-center gap-14 pb-20 pt-14 sm:pt-20 lg:grid-cols-12 lg:gap-10 lg:pb-28">
+      <div class="lg:col-span-7">
+        <a href={SITE.licenseVerifyUrl} target="_blank" rel="noopener" class="inline-flex max-w-full items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] py-1.5 pl-2 pr-4 text-xs text-slate-300 transition hover:border-volt-400/50">
+          <span class="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-volt-400/15 px-2 py-0.5 font-mono font-semibold text-volt-300"><span class="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-volt-400"></span>WA L&I</span>
+          <span class="truncate"><span class="hidden sm:inline">Licensed, Bonded &amp; Insured · </span>Lic. {SITE.license}</span>
+          <Icon name="ArrowUpRight" class="h-3.5 w-3.5 text-slate-400" />
+        </a>
+        <h1 class="mt-7 text-[2.6rem] font-semibold leading-[1.02] sm:text-6xl xl:text-7xl">
+          Commercial electrical for <span class="text-gradient">Seattle</span> businesses.
+        </h1>
+        <p class="mt-7 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+          Tenant improvements, office and retail build-outs, LED lighting retrofits, service and panel upgrades, and EV charging, done by a licensed Washington electrical contractor serving Seattle, King County and the Eastside.
+        </p>
+        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+          <a href="/contact/" class="btn btn-primary !px-7 !py-4 text-base">Request a Quote <Icon name="ArrowRight" class="h-4 w-4" /></a>
+          <a href={SITE.phoneHref} class="btn btn-ghost !px-7 !py-4 text-base"><Icon name="Phone" class="h-4 w-4 text-volt-400" />{SITE.phone}</a>
+        </div>
+        <dl class="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-white/[0.08] pt-8">
+          <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Focus</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Commercial only</dd></div>
+          <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Area</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Seattle &amp; Eastside</dd></div>
+          <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Status</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Licensed · Bonded · Insured</dd></div>
+        </dl>
+      </div>
+
+      <!-- Panelboard visual -->
+      <figure class="relative mx-auto w-full max-w-[460px] lg:col-span-5 lg:max-w-none">
+        <div class="absolute inset-6 rounded-[2rem] bg-volt-400/10 blur-3xl"></div>
+        <div class="card relative overflow-hidden rounded-[1.75rem] p-5 sm:p-7">
+          <div class="mb-4 flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">
+            <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-volt-400"></span>Panel LP-1</span>
+            <span>208Y/120V · 3Ø · 4W</span>
+          </div>
+          <Panelboard uid="hero" class="h-auto w-full" />
+          <figcaption class="mt-4 flex items-center justify-between gap-3 border-t border-white/[0.07] pt-4 text-xs text-slate-400">
+            <span>Commercial bolt-on panelboard</span>
+            <span class="font-mono text-slate-400">Illustration</span>
+          </figcaption>
+        </div>
+        <!-- callouts (desktop) -->
+        <div class="pointer-events-none absolute -left-12 top-[66%] hidden xl:block">
+          <span class="flex items-center gap-2 rounded-lg border border-volt-400/30 bg-night-900/90 px-3 py-1.5 font-mono text-[11px] text-volt-300 shadow-lg backdrop-blur">Typed circuit directory</span>
+        </div>
+        <div class="pointer-events-none absolute -right-6 top-[17%] hidden xl:block">
+          <span class="flex items-center gap-2 rounded-lg border border-volt-400/30 bg-night-900/90 px-3 py-1.5 font-mono text-[11px] text-volt-300 shadow-lg backdrop-blur">Main breaker</span>
+        </div>
+        <div class="pointer-events-none absolute -right-8 top-[58%] hidden xl:block">
+          <span class="flex items-center gap-2 rounded-lg border border-volt-400/30 bg-night-900/90 px-3 py-1.5 font-mono text-[11px] text-volt-300 shadow-lg backdrop-blur">Bolt-on branch breakers</span>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS STRIP -->
+  <section aria-label="Credentials" class="border-y border-white/[0.07] bg-night-950/60">
+    <div class="container-x grid divide-y divide-white/[0.07] sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
+      {creds.map((c) => (
+        <div class="flex gap-4 py-7 sm:px-2 lg:px-7 first:lg:pl-0">
+          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-volt-400/25 bg-volt-400/[0.08] text-volt-400"><Icon name={c.icon} class="h-5 w-5" /></span>
+          <div>
+            <p class="font-display font-semibold text-white">{c.title}</p>
+            <p class="mt-1 text-sm text-slate-400">{c.text}</p>
+            {c.href && <a href={c.href} target="_blank" rel="noopener" class="mt-1.5 inline-flex items-center gap-1 text-sm font-medium text-volt-400 hover:text-volt-300">{c.link}<Icon name="ArrowUpRight" class="h-3.5 w-3.5" /></a>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="container-x mt-24 sm:mt-32" id="services">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div class="max-w-2xl">
+        <span class="eyebrow">Services</span>
+        <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Commercial electrical work, end to end.</h2>
+        <p class="mt-5 text-lg text-slate-400">From a single panel swap to a full-floor build-out, one licensed contractor for the electrical scope.</p>
+      </div>
+      <a href="/services/" class="group inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-volt-300">All services <Icon name="ArrowRight" class="h-4 w-4 transition group-hover:translate-x-1" /></a>
+    </div>
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {SERVICES.map((s, i) => (
+        <a href={`/services/#${s.id}`} class="card card-hover group flex flex-col p-7">
+          <div class="flex items-start justify-between">
+            <span class="grid h-12 w-12 place-items-center rounded-xl border border-white/10 bg-night-800 text-volt-400 transition group-hover:border-volt-400/50 group-hover:bg-volt-400 group-hover:text-night-950"><Icon name={s.icon} class="h-6 w-6" /></span>
+            <span class="font-mono text-xs text-slate-500" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          </div>
+          <h3 class="mt-6 text-xl font-semibold">{s.title}</h3>
+          <p class="mt-3 flex-1 leading-relaxed text-slate-400">{s.short}</p>
+          <span class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-volt-400">Learn more <Icon name="ArrowRight" class="h-4 w-4 transition group-hover:translate-x-1" /></span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="container-x mt-24 sm:mt-32">
+    <div class="max-w-2xl">
+      <span class="eyebrow">How we work</span>
+      <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">A clear process, start to closeout.</h2>
+    </div>
+    <ol class="relative mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+      <div class="absolute left-0 right-0 top-[27px] hidden h-px bg-gradient-to-r from-volt-400/60 via-volt-400/20 to-transparent lg:block" aria-hidden="true"></div>
+      {steps.map((s) => (
+        <li class="relative">
+          <span class="relative z-10 grid h-14 w-14 place-items-center rounded-2xl border border-volt-400/40 bg-night-900 font-mono text-sm font-semibold text-volt-400 shadow-[0_0_30px_-6px_rgba(255,217,26,.45)]">{s.n}</span>
+          <h3 class="mt-6 text-xl font-semibold">{s.title}</h3>
+          <p class="mt-3 leading-relaxed text-slate-400">{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- PANEL SPOTLIGHT -->
+  <section class="container-x mt-24 sm:mt-32">
+    <div class="card grid items-center gap-10 overflow-hidden p-6 sm:p-10 lg:grid-cols-2 lg:p-14">
+      <div class="order-2 lg:order-1">
+        <span class="eyebrow">Service &amp; panel upgrades</span>
+        <h2 class="mt-4 text-3xl font-semibold sm:text-4xl">Commercial bolt-on panelboards, installed right.</h2>
+        <p class="mt-5 leading-relaxed text-slate-400">Commercial spaces need commercial gear. We install bolt-on lighting and appliance panelboards with properly sized mains and feeders, neat terminations and a typed circuit directory, so your facility team can find any circuit quickly.</p>
+        <ul class="mt-7 grid gap-3 text-sm sm:grid-cols-2">
+          {['Load calculations first', 'Bolt-on branch breakers', 'Typed circuit directories', 'Utility & inspector coordination'].map((t) => (
+            <li class="flex items-center gap-2.5 text-slate-200"><Icon name="CircleCheck" class="h-4 w-4 text-volt-400" />{t}</li>
+          ))}
+        </ul>
+        <a href="/services/#service-panel-upgrades" class="btn btn-ghost mt-9">Panel upgrade details <Icon name="ArrowRight" class="h-4 w-4" /></a>
+      </div>
+      <div class="relative order-1 mx-auto w-full max-w-[260px] sm:max-w-[300px] lg:order-2">
+        <div class="absolute inset-10 rounded-full bg-volt-400/15 blur-3xl"></div>
+        <Panelboard uid="spot" mode="interior" door={false} class="relative h-auto w-full" title="Illustration of a commercial bolt-on panelboard interior with deadfront removed, showing copper bus bars, neutral bars and bolt-on breakers" />
+        <p class="mt-3 text-center font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Interior · deadfront removed · illustration</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="container-x mt-24 sm:mt-32">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div class="max-w-2xl">
+        <span class="eyebrow">Projects</span>
+        <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Recent commercial work.</h2>
+        <p class="mt-5 text-slate-400"><span class="placeholder-tag">Placeholder</span> <span class="ml-2">These cards are slots for real commercial jobs: photos, locations and scope.</span></p>
+      </div>
+      <a href="/projects/" class="group inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-volt-300">View all projects <Icon name="ArrowRight" class="h-4 w-4 transition group-hover:translate-x-1" /></a>
+    </div>
+    <div class="mt-12 grid gap-5 md:grid-cols-3">
+      {PROJECTS.slice(0, 3).map((p) => <ProjectCard p={p} />)}
+    </div>
+    <figure class="mt-5 rounded-2xl border border-dashed border-arc-400/40 bg-arc-400/[0.04] p-8 sm:p-10">
+      <span class="placeholder-tag">Placeholder: testimonial</span>
+      <blockquote class="mt-5 font-display text-xl text-arc-200 sm:text-2xl">“[Client testimonial goes here: use only a real quote, with the client's permission.]”</blockquote>
+      <figcaption class="mt-4 font-mono text-sm text-arc-300/80">[Client name, title, company]</figcaption>
+    </figure>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section class="container-x mt-24 sm:mt-32" id="service-area">
+    <div class="grid items-center gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <span class="eyebrow">Service area</span>
+        <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Greater Seattle, King County &amp; the Eastside.</h2>
+        <p class="mt-5 leading-relaxed text-slate-400">We work on commercial sites across Seattle and King County, including Bellevue, Redmond, Kirkland and the rest of the Eastside. Not sure your site is covered? Just ask.</p>
+        <ul class="mt-8 flex flex-wrap gap-2">
+          {SERVICE_AREAS.map((c) => <li class="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-sm text-slate-200">{c}</li>)}
+          <li class="rounded-full border border-volt-400/30 bg-volt-400/10 px-3.5 py-1.5 text-sm text-volt-300">+ greater King County</li>
+        </ul>
+      </div>
+      <div class="lg:col-span-7">
+        <div class="card overflow-hidden p-3 sm:p-5"><ServiceAreaMap /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="container-x mt-24 grid gap-12 sm:mt-32 lg:grid-cols-12">
+    <div class="self-start lg:sticky lg:top-28 lg:col-span-4">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Common questions.</h2>
+      <p class="mt-5 text-slate-400">Don't see yours? Call <a href={SITE.phoneHref} class="font-semibold text-white hover:text-volt-300">{SITE.phone}</a> or email <a href={`mailto:${SITE.email}`} class="font-semibold text-white hover:text-volt-300">{SITE.email}</a>.</p>
+    </div>
+    <div class="lg:col-span-8"><FAQ /></div>
+  </section>
+
+  <FinalCTA />
+</Base>

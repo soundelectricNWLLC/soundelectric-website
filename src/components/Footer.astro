@@ -1,0 +1,44 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { SITE, NAV, SERVICES } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="relative mt-24 border-t border-white/[0.07] bg-night-950">
+  <div class="hairline absolute inset-x-0 top-0"></div>
+  <div class="container-x grid grid-cols-2 gap-x-6 gap-y-12 py-16 md:grid-cols-12">
+    <div class="col-span-2 md:col-span-4">
+      <Logo />
+      <p class="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">Commercial electrical contractor serving Seattle, King County and the Eastside.</p>
+      <a href={SITE.licenseVerifyUrl} target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 rounded-lg border border-white/10 px-3 py-2 font-mono text-xs text-slate-300 transition hover:border-volt-400/50 hover:text-white">
+        <Icon name="ShieldCheck" class="h-4 w-4 text-volt-400" /> WA Lic. {SITE.license} · Verify at L&I <Icon name="ArrowUpRight" class="h-3.5 w-3.5" />
+      </a>
+    </div>
+    <div class="col-span-2 sm:col-span-1 md:col-span-3">
+      <h2 class="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Services</h2>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        {SERVICES.map((s) => <li><a href={`/services/#${s.id}`} class="text-slate-300 transition hover:text-volt-300">{s.title}</a></li>)}
+      </ul>
+    </div>
+    <div class="col-span-2 sm:col-span-1 md:col-span-2">
+      <h2 class="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Company</h2>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        {NAV.map((n) => <li><a href={n.href} class="text-slate-300 transition hover:text-volt-300">{n.label}</a></li>)}
+      </ul>
+    </div>
+    <div class="col-span-2 md:col-span-3">
+      <h2 class="font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">Contact</h2>
+      <ul class="mt-4 space-y-3 text-sm">
+        <li><a href={SITE.phoneHref} class="flex items-center gap-2.5 text-white transition hover:text-volt-300"><Icon name="Phone" class="h-4 w-4 text-volt-400" />{SITE.phone}</a></li>
+        <li><a href={`mailto:${SITE.email}`} class="flex items-center gap-2.5 text-white transition hover:text-volt-300"><Icon name="Mail" class="h-4 w-4 text-volt-400" />{SITE.email}</a></li>
+        <li class="flex items-start gap-2.5 text-slate-400"><Icon name="MapPin" class="mt-0.5 h-4 w-4 text-volt-400" />Serving Seattle, King County &amp; the Eastside</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/[0.06]">
+    <div class="container-x flex flex-col gap-2 py-6 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {year} {SITE.name}. All rights reserved.</p>
+      <p>Licensed, Bonded &amp; Insured · WA Electrical Contractor {SITE.license}</p>
+    </div>
+  </div>
+</footer>

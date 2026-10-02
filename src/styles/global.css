@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --color-night-950: #04070d;
+  --color-night-900: #070b14;
+  --color-night-850: #0a101c;
+  --color-night-800: #0e1626;
+  --color-night-700: #16213a;
+  --color-night-600: #22304f;
+
+  --color-volt-200: #fff0a3;
+  --color-volt-300: #ffe566;
+  --color-volt-400: #ffd91a;
+  --color-volt-500: #f5c400;
+
+  --color-arc-200: #c4f6ff;
+  --color-arc-300: #8beeff;
+  --color-arc-400: #3ee0f5;
+  --color-arc-500: #0fc3dd;
+}
+
+@layer base {
+  html { background: var(--color-night-900); color-scheme: dark; scroll-behavior: smooth; }
+  body { @apply font-sans text-slate-300 antialiased; text-rendering: optimizeLegibility; }
+  h1, h2, h3, h4 { @apply font-display text-white; letter-spacing: -0.02em; }
+  ::selection { background: var(--color-volt-400); color: var(--color-night-950); }
+  :focus-visible { outline: 2px solid var(--color-volt-400); outline-offset: 3px; border-radius: 6px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
+
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition duration-200 ease-out; }
+  .btn-primary { @apply bg-volt-400 text-night-950 hover:bg-volt-300 hover:-translate-y-0.5; box-shadow: 0 0 0 1px rgb(255 217 26 / .4), 0 10px 30px -10px rgb(255 217 26 / .55); }
+  .btn-primary:hover { box-shadow: 0 0 0 1px rgb(255 229 102 / .6), 0 14px 40px -10px rgb(255 217 26 / .75); }
+  .btn-ghost { @apply border border-white/15 bg-white/[0.03] text-white hover:border-volt-400/60 hover:bg-white/[0.06]; }
+
+  .eyebrow { @apply inline-flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-volt-400; }
+  .eyebrow::before { content: ""; @apply h-px w-6 bg-volt-400/70; }
+
+  .card { @apply relative rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.045] to-white/[0.01] backdrop-blur-sm; }
+  .card-hover { @apply transition duration-300 hover:-translate-y-1 hover:border-volt-400/40; }
+  .card-hover:hover { box-shadow: 0 20px 60px -25px rgb(255 217 26 / .25); }
+
+  .placeholder-tag { @apply inline-flex items-center gap-1.5 rounded-full border border-dashed border-arc-400/60 bg-arc-400/10 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wider text-arc-300; }
+  .placeholder-text { @apply rounded border border-dashed border-arc-400/40 bg-arc-400/[0.06] px-1.5 font-mono text-arc-300; }
+
+  .icon-svg > svg { width: 100%; height: 100%; stroke-width: 1.75; }
+}
+
+/* Background treatments */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(148 163 184 / .07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(148 163 184 / .07) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+.mask-radial { mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 100%); }
+.mask-fade-b { mask-image: linear-gradient(to bottom, #000 60%, transparent); }
+.text-gradient { background: linear-gradient(100deg, #fff 0%, var(--color-volt-300) 55%, var(--color-volt-500) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hairline { background: linear-gradient(90deg, transparent, rgb(255 255 255 / .14), transparent); height: 1px; }
+
+@keyframes pulse-dot { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+.animate-pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
+@keyframes dash { to { stroke-dashoffset: -200; } }
+.animate-dash { stroke-dasharray: 6 10; animation: dash 8s linear infinite; }
+
+details summary::-webkit-details-marker { display: none; }
+details[open] .faq-icon { transform: rotate(45deg); }
