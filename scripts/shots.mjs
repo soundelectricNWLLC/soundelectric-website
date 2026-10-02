@@ -1,12 +1,13 @@
 // Usage: node scripts/shots.mjs [baseUrl] [outDir]
 import { chromium } from 'playwright-core';
+import { SHOW_ABOUT_PAGE } from '../src/data/features.mjs';
 const base = process.argv[2] || 'http://127.0.0.1:4321';
 const out = process.argv[3] || '../redesign-shots';
 const shots = [
   ['home-desktop-1440.png', '/', 1440, 900],
   ['home-mobile-390.png', '/', 390, 844],
   ['services-desktop-1440.png', '/services/', 1440, 900],
-  ...(process.env.ALL ? [['projects-desktop-1440.png', '/projects/', 1440, 900], ['about-desktop-1440.png', '/about/', 1440, 900], ['contact-desktop-1440.png', '/contact/', 1440, 900], ['contact-mobile-390.png', '/contact/', 390, 844]] : []),
+  ...(process.env.ALL ? [['projects-desktop-1440.png', '/projects/', 1440, 900], ...(SHOW_ABOUT_PAGE ? [['about-desktop-1440.png', '/about/', 1440, 900]] : []), ['contact-desktop-1440.png', '/contact/', 1440, 900], ['contact-mobile-390.png', '/contact/', 390, 844]] : []),
 ];
 const browser = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', headless: true });
 for (const [file, path, w, h] of shots) {

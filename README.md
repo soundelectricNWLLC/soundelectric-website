@@ -30,12 +30,20 @@ Uses Playwright-core with the system Chrome at `/usr/bin/google-chrome`. Overrid
 
 ## Where things live
 - `src/data/site.ts`: business facts (phone, email, license), service-area list, service copy, industries, FAQ. The public name is Sound Electric. `legalName` is Sound Electric NW LLC, used only as JSON-LD `legalName` and in the copyright line. The site does not name the owner anywhere; there is no `SITE.owner` field. Personal details wait for the future About content (`SHOW_OWNER_BIO` stays `false`). `SITE.email` is the working mailbox jeremiah@soundelectric.com.
-- `src/data/features.mjs`: `SHOW_PROJECTS`, `SHOW_TESTIMONIAL`, `SHOW_OWNER_BIO`, and `SHOW_JOB_SITE_PHOTO` (all `false` until real content exists)
+- `src/data/features.mjs`: `SHOW_PROJECTS`, `SHOW_TESTIMONIAL`, `SHOW_OWNER_BIO`, `SHOW_JOB_SITE_PHOTO`, and `SHOW_ABOUT_PAGE` (all `false` until real content exists)
 - `src/data/projects.ts`: project cards (**all placeholders**; not rendered while `SHOW_PROJECTS` is false)
 - `src/components/Panelboard.astro`: original SVG illustration of a commercial panelboard, PRL1a-style (deadfront and interior modes). Kept in the repo, but no page renders it now; the real panel photos replaced it.
 - `src/assets/`: Jeremiah's photos, served through `astro:assets` (`<Picture>`). `hero-cloud-pendants.jpg` is the Home hero. `panel-eaton-pow-r-line.jpg` (lead) is on the Home panel spotlight and Services → Panel Upgrades, Inspections & Torque Service (`#service-panel-upgrades`). `panel-siemens-42-circuit.jpg` is the second photo on Services. The panel photos are stored with EXIF/GPS metadata stripped.
 - `src/layouts/Base.astro`: SEO meta, Open Graph and Twitter tags, plus Electrician JSON-LD (no street address, areaServed Greater Seattle Area plus the city list)
 - `public/`: favicon.svg/png, apple-touch-icon, og-image.png, robots.txt. The sitemap comes from @astrojs/sitemap.
+
+## Pages
+Live: Home (`/`), Services (`/services/`), Contact (`/contact/`), plus the 404 page.
+Hidden behind flags in `src/data/features.mjs` (the source stays in the repo):
+- `/projects`: `SHOW_PROJECTS`. While it is false, the page is out of the nav and sitemap, and `dist/_redirects` sends `/projects` to `/` (302).
+- `/about`: `SHOW_ABOUT_PAGE`. Jeremiah will write his own About section later. While it is false, About is out of the header nav, mobile menu, footer and sitemap, and `dist/_redirects` sends `/about` and `/about/` to `/` (301). `src/pages/about.astro` also redirects as a fallback.
+
+`_redirects` is written by the `hidden-pages-redirects` hook in `astro.config.mjs`. To publish About again: write the section in `src/pages/about.astro`, set `SHOW_ABOUT_PAGE` (and `SHOW_OWNER_BIO` / `SHOW_JOB_SITE_PHOTO` as needed) to `true`, then rebuild and deploy.
 
 ## Panel services copy
 Home (panel spotlight) and Services (`#service-panel-upgrades`) cover panel upgrades, panel inspections, and torque service (checking and re-torquing terminations and lugs to manufacturer spec), plus load calcs and service upgrades with utility coordination. Keep the panel wording general: describe the services, not a specific breaker or panelboard mounting type.
@@ -46,6 +54,7 @@ Home (`/#industries`) and Services list the industries in `src/data/site.ts`. De
 ## Needs real content before launch
 - Project cards (Home + /projects): real job photos, city or neighborhood, year, scope, then set `SHOW_PROJECTS` to `true` in `src/data/features.mjs`
 - Testimonial block (Home): a real client quote, used with permission, then set `SHOW_TESTIMONIAL` to `true` in `src/data/features.mjs`
+- About page (/about, hidden): Jeremiah's own About section, then set `SHOW_ABOUT_PAGE` to `true` in `src/data/features.mjs`
 - Owner bio (/about): verifiable facts, then set `SHOW_OWNER_BIO` to `true` in `src/data/features.mjs`
 - Job-site photo (/about): a real photo of Jeremiah or the crew, then set `SHOW_JOB_SITE_PHOTO` to `true` in `src/data/features.mjs`
 - Confirm the service-area city list in `src/data/site.ts`

@@ -14,7 +14,13 @@
 //
 // Job-site photo: set SHOW_JOB_SITE_PHOTO to true after replacing the dashed
 // photo slot on /about with a real photo of Jeremiah or the crew.
+//
+// About page: set SHOW_ABOUT_PAGE to true once Jeremiah has written his own
+// About section. While this is false, every About link (header, mobile menu,
+// footer) stays hidden, /about is left out of the sitemap, and /about 301s home.
+// src/pages/about.astro stays in the repo so turning this on republishes it.
 export const SHOW_PROJECTS = false;
 export const SHOW_TESTIMONIAL = false;
 export const SHOW_OWNER_BIO = false;
 export const SHOW_JOB_SITE_PHOTO = false;
+export const SHOW_ABOUT_PAGE = false;
