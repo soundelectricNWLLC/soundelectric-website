@@ -6,8 +6,12 @@ import ServiceAreaMap from '../components/ServiceAreaMap.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import FAQ from '../components/FAQ.astro';
 import FinalCTA from '../components/FinalCTA.astro';
-import { SITE, SERVICES, SERVICE_AREAS } from '../data/site';
+import { SITE, SERVICES, SERVICE_AREAS, SHOW_PROJECTS, SHOW_TESTIMONIAL } from '../data/site';
 import { PROJECTS } from '../data/projects';
+
+// Empty lists skip the section, so a flag flip with no real entries still renders nothing.
+const featuredProjects = SHOW_PROJECTS ? PROJECTS.slice(0, 3) : [];
+const showTestimonial = SHOW_TESTIMONIAL;
 
 const creds = [
   { icon: 'BadgeCheck', title: 'WA Licensed Electrical Contractor', text: `License ${SITE.license}`, href: SITE.licenseVerifyUrl, link: 'Verify at L&I' },
@@ -164,25 +168,33 @@ const steps = [
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section class="container-x mt-24 sm:mt-32">
-    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-      <div class="max-w-2xl">
-        <span class="eyebrow">Projects</span>
-        <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Recent commercial work.</h2>
-        <p class="mt-5 text-slate-400"><span class="placeholder-tag">Placeholder</span> <span class="ml-2">These cards are slots for real commercial jobs: photos, locations and scope.</span></p>
-      </div>
-      <a href="/projects/" class="group inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-volt-300">View all projects <Icon name="ArrowRight" class="h-4 w-4 transition group-hover:translate-x-1" /></a>
-    </div>
-    <div class="mt-12 grid gap-5 md:grid-cols-3">
-      {PROJECTS.slice(0, 3).map((p) => <ProjectCard p={p} />)}
-    </div>
-    <figure class="mt-5 rounded-2xl border border-dashed border-arc-400/40 bg-arc-400/[0.04] p-8 sm:p-10">
-      <span class="placeholder-tag">Placeholder: testimonial</span>
-      <blockquote class="mt-5 font-display text-xl text-arc-200 sm:text-2xl">“[Client testimonial goes here: use only a real quote, with the client's permission.]”</blockquote>
-      <figcaption class="mt-4 font-mono text-sm text-arc-300/80">[Client name, title, company]</figcaption>
-    </figure>
-  </section>
+  <!-- PROJECTS + TESTIMONIAL. Hidden until SHOW_PROJECTS / SHOW_TESTIMONIAL in src/data/features.mjs. -->
+  {(featuredProjects.length > 0 || showTestimonial) && (
+    <section class="container-x mt-24 sm:mt-32">
+      {featuredProjects.length > 0 && (
+        <>
+          <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div class="max-w-2xl">
+              <span class="eyebrow">Projects</span>
+              <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Recent commercial work.</h2>
+              <p class="mt-5 text-slate-400"><span class="placeholder-tag">Placeholder</span> <span class="ml-2">These cards are slots for real commercial jobs: photos, locations and scope.</span></p>
+            </div>
+            <a href="/projects/" class="group inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-volt-300">View all projects <Icon name="ArrowRight" class="h-4 w-4 transition group-hover:translate-x-1" /></a>
+          </div>
+          <div class="mt-12 grid gap-5 md:grid-cols-3">
+            {featuredProjects.map((p) => <ProjectCard p={p} />)}
+          </div>
+        </>
+      )}
+      {showTestimonial && (
+        <figure class:list={['rounded-2xl border border-dashed border-arc-400/40 bg-arc-400/[0.04] p-8 sm:p-10', featuredProjects.length > 0 && 'mt-5']}>
+          <span class="placeholder-tag">Placeholder: testimonial</span>
+          <blockquote class="mt-5 font-display text-xl text-arc-200 sm:text-2xl">“[Client testimonial goes here: use only a real quote, with the client's permission.]”</blockquote>
+          <figcaption class="mt-4 font-mono text-sm text-arc-300/80">[Client name, title, company]</figcaption>
+        </figure>
+      )}
+    </section>
+  )}
 
   <!-- SERVICE AREA -->
   <section class="container-x mt-24 sm:mt-32" id="service-area">
