@@ -8,6 +8,8 @@ import FAQ from '../components/FAQ.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import { SITE, SERVICES, SERVICE_AREAS, SHOW_PROJECTS, SHOW_TESTIMONIAL } from '../data/site';
 import { PROJECTS } from '../data/projects';
+import { Picture } from 'astro:assets';
+import heroPhoto from '../assets/hero-cloud-pendants.jpg';
 
 // Empty lists skip the section, so a flag flip with no real entries still renders nothing.
 const featuredProjects = SHOW_PROJECTS ? PROJECTS.slice(0, 3) : [];
@@ -16,7 +18,7 @@ const showTestimonial = SHOW_TESTIMONIAL;
 const creds = [
   { icon: 'BadgeCheck', title: 'WA Licensed Electrical Contractor', text: `License ${SITE.license}`, href: SITE.licenseVerifyUrl, link: 'Verify at L&I' },
   { icon: 'ShieldCheck', title: 'Licensed, Bonded & Insured', text: 'Ask us for proof of coverage for your project file.' },
-  { icon: 'Building2', title: 'Commercial-Only Focus', text: 'Business and commercial property work, not homes.' },
+  { icon: 'Building2', title: 'Commercial Focus', text: 'Business and commercial property work.' },
   { icon: 'Headset', title: 'Direct Line to the Owner', text: `Talk to ${SITE.owner} about your scope.` },
 ];
 const steps = [
@@ -28,7 +30,7 @@ const steps = [
 ---
 <Base
   title="Commercial Electrician Seattle | Sound Electric NW LLC"
-  description="Licensed, bonded & insured commercial electrical contractor serving Seattle, King County and the Eastside. Tenant improvements, build-outs, LED retrofits, panel upgrades and EV charging. Call (425) 971-7987.">
+  description="Licensed, bonded & insured commercial electrical contractor serving the Greater Seattle Area. Tenant improvements, build-outs, LED retrofits, panel upgrades and EV charging. Call (425) 971-7987.">
 
   <!-- HERO -->
   <section class="relative overflow-hidden">
@@ -46,42 +48,42 @@ const steps = [
           Commercial electrical for <span class="text-gradient">Seattle</span> businesses.
         </h1>
         <p class="mt-7 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-          Tenant improvements, office and retail build-outs, LED lighting retrofits, service and panel upgrades, and EV charging, done by a licensed Washington electrical contractor serving Seattle, King County and the Eastside.
+          Tenant improvements, office and retail build-outs, LED lighting retrofits, service and panel upgrades, and EV charging, done by a licensed Washington electrical contractor serving the Greater Seattle Area.
         </p>
         <div class="mt-10 flex flex-col gap-3 sm:flex-row">
           <a href="/contact/" class="btn btn-primary !px-7 !py-4 text-base">Request a Quote <Icon name="ArrowRight" class="h-4 w-4" /></a>
           <a href={SITE.phoneHref} class="btn btn-ghost !px-7 !py-4 text-base"><Icon name="Phone" class="h-4 w-4 text-volt-400" />{SITE.phone}</a>
         </div>
         <dl class="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-white/[0.08] pt-8">
-          <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Focus</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Commercial only</dd></div>
-          <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Area</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Seattle &amp; Eastside</dd></div>
+          <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Focus</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Commercial</dd></div>
+          <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Area</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Greater Seattle Area</dd></div>
           <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Status</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Licensed · Bonded · Insured</dd></div>
         </dl>
       </div>
 
-      <!-- Panelboard visual -->
-      <figure class="relative mx-auto w-full max-w-[460px] lg:col-span-5 lg:max-w-none">
-        <div class="absolute inset-6 rounded-[2rem] bg-volt-400/10 blur-3xl"></div>
-        <div class="card relative overflow-hidden rounded-[1.75rem] p-5 sm:p-7">
-          <div class="mb-4 flex items-center justify-between font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">
-            <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-volt-400"></span>Panel LP-1</span>
-            <span>208Y/120V · 3Ø · 4W</span>
+      <!-- Hero photo: Sound Electric NW commercial lighting install -->
+      <figure class="relative mx-auto w-full max-w-[400px] sm:max-w-[440px] lg:col-span-5 lg:mr-0 lg:max-w-[440px]">
+        <div class="absolute inset-8 rounded-[2rem] bg-volt-400/15 blur-3xl"></div>
+        <div class="card relative overflow-hidden rounded-[1.75rem] p-2.5 sm:p-3">
+          <div class="relative aspect-[4/5] overflow-hidden rounded-[1.3rem] bg-night-800">
+            <Picture
+              src={heroPhoto}
+              width={880}
+              formats={['avif', 'webp']}
+              fallbackFormat="jpg"
+              widths={[400, 600, 880, 1100]}
+              sizes="(min-width: 640px) 440px, calc(100vw - 2.5rem)"
+              loading="eager"
+              fetchpriority="high"
+              alt="Cloud-shaped pendant lights under a cove-lit ceiling, a Sound Electric NW commercial lighting install"
+              class="h-full w-full object-cover object-[50%_40%]"
+            />
+            <div class="pointer-events-none absolute inset-0 rounded-[1.3rem] ring-1 ring-inset ring-white/10"></div>
           </div>
-          <Panelboard uid="hero" class="h-auto w-full" />
-          <figcaption class="mt-4 flex items-center justify-between gap-3 border-t border-white/[0.07] pt-4 text-xs text-slate-400">
-            <span>Commercial bolt-on panelboard</span>
-            <span class="font-mono text-slate-400">Illustration</span>
+          <figcaption class="flex items-center justify-between gap-3 px-2.5 pb-1.5 pt-3.5 text-xs text-slate-400">
+            <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-volt-400"></span>Commercial lighting install</span>
+            <span class="font-mono uppercase tracking-[0.16em] text-slate-400">Our work</span>
           </figcaption>
-        </div>
-        <!-- callouts (desktop) -->
-        <div class="pointer-events-none absolute -left-12 top-[66%] hidden xl:block">
-          <span class="flex items-center gap-2 rounded-lg border border-volt-400/30 bg-night-900/90 px-3 py-1.5 font-mono text-[11px] text-volt-300 shadow-lg backdrop-blur">Typed circuit directory</span>
-        </div>
-        <div class="pointer-events-none absolute -right-6 top-[17%] hidden xl:block">
-          <span class="flex items-center gap-2 rounded-lg border border-volt-400/30 bg-night-900/90 px-3 py-1.5 font-mono text-[11px] text-volt-300 shadow-lg backdrop-blur">Main breaker</span>
-        </div>
-        <div class="pointer-events-none absolute -right-8 top-[58%] hidden xl:block">
-          <span class="flex items-center gap-2 rounded-lg border border-volt-400/30 bg-night-900/90 px-3 py-1.5 font-mono text-[11px] text-volt-300 shadow-lg backdrop-blur">Bolt-on branch breakers</span>
         </div>
       </figure>
     </div>
@@ -201,11 +203,11 @@ const steps = [
     <div class="grid items-center gap-12 lg:grid-cols-12">
       <div class="lg:col-span-5">
         <span class="eyebrow">Service area</span>
-        <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Greater Seattle, King County &amp; the Eastside.</h2>
-        <p class="mt-5 leading-relaxed text-slate-400">We work on commercial sites across Seattle and King County, including Bellevue, Redmond, Kirkland and the rest of the Eastside. Not sure your site is covered? Just ask.</p>
+        <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">The Greater Seattle Area.</h2>
+        <p class="mt-5 leading-relaxed text-slate-400">We work on commercial sites across the Greater Seattle Area: north to Marysville and Bellingham, south to Federal Way and Tacoma, east to Duvall and Issaquah, and across the Sound to Poulsbo and Port Orchard. Not sure your site is covered? Just ask.</p>
         <ul class="mt-8 flex flex-wrap gap-2">
           {SERVICE_AREAS.map((c) => <li class="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-sm text-slate-200">{c}</li>)}
-          <li class="rounded-full border border-volt-400/30 bg-volt-400/10 px-3.5 py-1.5 text-sm text-volt-300">+ greater King County</li>
+          <li class="rounded-full border border-volt-400/30 bg-volt-400/10 px-3.5 py-1.5 text-sm text-volt-300">+ the Greater Seattle Area</li>
         </ul>
       </div>
       <div class="lg:col-span-7">

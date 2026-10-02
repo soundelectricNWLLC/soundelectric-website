@@ -4,19 +4,19 @@ import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
 import Panelboard from '../components/Panelboard.astro';
 import FinalCTA from '../components/FinalCTA.astro';
-import { SITE, SERVICES } from '../data/site';
+import { SITE, SERVICES, SERVICE_AREAS } from '../data/site';
 const serviceSchema = SERVICES.map((s) => ({
   '@context': 'https://schema.org', '@type': 'Service', name: s.title, description: s.short,
   serviceType: s.title, provider: { '@id': `${SITE.url}/#business` },
-  areaServed: [{ '@type': 'City', name: 'Seattle' }, { '@type': 'AdministrativeArea', name: 'King County, Washington' }],
+  areaServed: [{ '@type': 'AdministrativeArea', name: 'Greater Seattle Area' }, ...SERVICE_AREAS.map((c) => ({ '@type': 'City', name: `${c}, WA` }))],
   url: `${SITE.url}/services/#${s.id}`,
 }));
 ---
 <Base
-  title="Commercial Electrical Services in Seattle & King County | Sound Electric NW"
-  description="Commercial electrician serving Seattle, King County and the Eastside: tenant improvements, office & retail build-outs, LED lighting retrofits, service & panel upgrades, EV charging and maintenance."
+  title="Commercial Electrical Services | Commercial Electrician Seattle | Sound Electric NW"
+  description="Commercial electrician serving the Greater Seattle Area: tenant improvements, office & retail build-outs, LED lighting retrofits, service & panel upgrades, EV charging and maintenance."
   jsonLd={serviceSchema}>
-  <PageHero eyebrow="Services" title='Commercial electrical services for <span class="text-gradient">Seattle</span> &amp; the Eastside.'
+  <PageHero eyebrow="Services" title='Commercial electrical services for the <span class="text-gradient">Greater Seattle Area</span>.'
     lead="One licensed, bonded and insured contractor for the electrical scope on commercial projects: from a single panel to a full build-out.">
     <nav class="mt-10 flex flex-wrap gap-2" aria-label="Jump to service">
       {SERVICES.map((s) => <a href={`#${s.id}`} class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-slate-200 transition hover:border-volt-400/50 hover:text-white"><Icon name={s.icon} class="h-4 w-4 text-volt-400" />{s.title}</a>)}

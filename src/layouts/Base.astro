@@ -24,10 +24,10 @@ const business = {
   email: SITE.email,
   logo: `${SITE.url}/favicon.svg`,
   image: ogImage,
-  description: 'Licensed, bonded and insured commercial electrical contractor serving Seattle, King County and the Eastside.',
+  description: 'Licensed, bonded and insured commercial electrical contractor serving the Greater Seattle Area.',
   areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Greater Seattle Area', containedInPlace: { '@type': 'State', name: 'Washington' } },
     { '@type': 'City', name: 'Seattle', containedInPlace: { '@type': 'State', name: 'Washington' } },
-    { '@type': 'AdministrativeArea', name: 'King County, Washington' },
     ...SERVICE_AREAS.filter((c) => c !== 'Seattle').map((c) => ({ '@type': 'City', name: `${c}, WA` })),
   ],
   hasCredential: {

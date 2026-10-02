@@ -1,46 +1,84 @@
 ---
-// Stylized (not to scale) map of the greater Seattle service area. Positions are approximate.
-const pts: [string, number, number, ('l'|'r')?][] = [
-  ['Shoreline', 88, 52, 'r'], ['Bothell', 292, 47], ['Woodinville', 356, 54, 'r'],
-  ['Kirkland', 286, 139], ['Redmond', 418, 147], ['Seattle', 102, 226, 'r'],
-  ['Bellevue', 298, 222], ['Sammamish', 546, 215], ['Mercer Island', 251, 272, 'l'],
-  ['Issaquah', 550, 315, 'l'], ['Renton', 274, 371], ['Tukwila', 190, 381, 'l'],
+// Stylized (not to scale) map of the Greater Seattle Area service area. Positions are approximate:
+// the Seattle/Eastside core is drawn larger than true scale, and the distance to Bellingham is
+// compressed (see the break line). Keep the names in sync with SERVICE_AREAS in src/data/site.ts.
+// [name, x, y, label side: 'l' left, 'r' right, 'b' below, default above]
+type Pt = [string, number, number, ('l' | 'r' | 'b')?];
+const pts: Pt[] = [
+  ['Bellingham', 214, 56, 'r'],
+  ['Marysville', 352, 150, 'r'],
+  ['Shoreline', 236, 232, 'l'], ['Bothell', 350, 216, 'l'], ['Woodinville', 436, 236],
+  ['Duvall', 560, 222],
+  ['Poulsbo', 82, 254, 'b'],
+  ['Kirkland', 342, 296, 'l'], ['Redmond', 440, 300, 'r'],
+  ['Seattle', 238, 352, 'l'], ['Bellevue', 362, 352, 'r'], ['Sammamish', 548, 360, 'b'],
+  ['Mercer Island', 318, 398, 'r'], ['Port Orchard', 92, 404, 'b'],
+  ['Issaquah', 520, 440, 'r'],
+  ['Tukwila', 262, 470, 'l'], ['Renton', 352, 470, 'r'],
+  ['Federal Way', 286, 548, 'r'],
+  ['Tacoma', 214, 600, 'r'],
 ];
-const hub = [102, 226];
+const hub = pts.find((p) => p[0] === 'Seattle')!;
+const W = 640, H = 660;
 ---
-<svg viewBox="0 0 620 430" class="h-auto w-full" role="img" aria-label="Stylized map of the Sound Electric NW service area: Seattle, King County and Eastside cities">
+<svg viewBox={`0 0 ${W} ${H}`} class="sa-map h-auto w-full" role="img" aria-label="Stylized map of the Sound Electric NW service area across the Greater Seattle Area: Bellingham and Marysville to the north, Seattle and the Eastside including Duvall and Issaquah, Poulsbo and Port Orchard across Puget Sound, and Federal Way and Tacoma to the south">
+  <style>
+    .sa-map .lbl { font-family: 'Inter Variable', sans-serif; font-size: 14px; font-weight: 500; fill: #cbd5e1; paint-order: stroke; stroke: #0a101c; stroke-width: 4px; stroke-linejoin: round; }
+    .sa-map .lbl.hub { font-size: 18px; font-weight: 700; fill: #fff; }
+    .sa-map .meta { font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: 1.5px; fill: #64748b; }
+    @media (max-width: 640px) {
+      .sa-map .lbl { font-size: 21px; stroke-width: 5px; }
+      .sa-map .lbl.hub { font-size: 25px; }
+      .sa-map .meta { font-size: 16px; }
+    }
+  </style>
   <defs>
-    <radialGradient id="sa-glow" cx="0.3" cy="0.5" r="0.7"><stop offset="0" stop-color="#ffd91a" stop-opacity=".18"/><stop offset="1" stop-color="#ffd91a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="sa-glow" cx="0.38" cy="0.55" r="0.6"><stop offset="0" stop-color="#ffd91a" stop-opacity=".16"/><stop offset="1" stop-color="#ffd91a" stop-opacity="0"/></radialGradient>
     <pattern id="sa-dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#94a3b8" fill-opacity=".14"/></pattern>
   </defs>
-  <rect width="620" height="430" fill="url(#sa-dots)"/>
-  <rect width="620" height="430" fill="url(#sa-glow)"/>
-  <!-- Puget Sound (stylized) -->
-  <path d="M0 0 H62 C70 60 48 120 66 170 C80 210 60 250 74 300 C86 350 70 400 92 430 H0 Z" fill="#0fc3dd" fill-opacity=".07"/>
-  <path d="M62 0 C70 60 48 120 66 170 C80 210 60 250 74 300 C86 350 70 400 92 430" fill="none" stroke="#3ee0f5" stroke-opacity=".3"/>
+  <rect width={W} height={H} fill="url(#sa-dots)"/>
+  <rect width={W} height={H} fill="url(#sa-glow)"/>
+
+  <!-- North: Bellingham Bay (stylized), above the break -->
+  <path d="M0 0 H176 C170 30 186 56 172 80 C164 92 150 98 140 104 H0 Z" fill="#0fc3dd" fill-opacity=".07"/>
+  <path d="M176 0 C170 30 186 56 172 80 C164 92 150 98 140 104" fill="none" stroke="#3ee0f5" stroke-opacity=".3"/>
+
+  <!-- Distance break between Bellingham and the rest of the map -->
+  <line x1="0" y1="112" x2={W} y2="112" stroke="#64748b" stroke-opacity=".45" stroke-dasharray="3 7"/>
+  <text x={W - 14} y="104" text-anchor="end" class="meta">≈ 60 MI NORTH</text>
+
+  <!-- Puget Sound (stylized): Kitsap side to the west, Seattle shore to the east -->
+  <path d="M0 122 H300 C292 150 268 170 250 186 C226 206 214 240 214 276 C214 304 208 326 218 350 C226 372 214 396 222 420 C230 448 248 470 252 500 C256 528 262 548 262 572 C256 588 236 592 206 604 C196 620 196 640 204 660 H120 C122 630 116 600 136 572 C148 540 140 508 150 474 C158 446 146 420 156 392 C164 360 144 330 150 300 C156 270 140 240 152 214 C164 186 176 160 156 122 Z" fill="#0fc3dd" fill-opacity=".08"/>
+  <path d="M300 122 C292 150 268 170 250 186 C226 206 214 240 214 276 C214 304 208 326 218 350 C226 372 214 396 222 420 C230 448 248 470 252 500 C256 528 262 548 262 572 C256 588 236 592 206 604 C196 620 196 640 204 660" fill="none" stroke="#3ee0f5" stroke-opacity=".3"/>
+  <path d="M156 122 C176 160 164 186 152 214 C140 240 156 270 150 300 C144 330 164 360 156 392 C146 420 158 446 150 474 C140 508 148 540 136 572 C116 600 122 630 120 660" fill="none" stroke="#3ee0f5" stroke-opacity=".3"/>
+  <!-- open water west of Kitsap (Hood Canal hint) -->
+  <path d="M0 122 H36 C30 170 44 230 30 290 C20 340 34 400 20 460 C12 520 26 600 18 660 H0 Z" fill="#0fc3dd" fill-opacity=".06"/>
+  <text x="196" y="560" text-anchor="middle" class="meta" transform="rotate(-82 196 560)">PUGET SOUND</text>
+
   <!-- Lake Washington (stylized) with Mercer Island -->
-  <path d="M190 34 C204 86 196 128 210 168 C220 200 204 232 212 262 C218 300 222 334 246 362 L264 356 C252 322 262 290 270 256 C278 220 264 190 272 158 C280 118 262 76 238 34 Z" fill="#0fc3dd" fill-opacity=".09" stroke="#3ee0f5" stroke-opacity=".3"/>
-  <path d="M248 238 C256 250 260 278 254 304 C246 296 242 262 248 238 Z" fill="#0a101c" stroke="#3ee0f5" stroke-opacity=".3"/>
+  <path d="M286 238 C298 270 290 300 300 326 C306 350 296 372 302 396 C308 424 314 446 334 466 L346 460 C336 436 342 410 344 384 C346 356 338 332 342 306 C346 280 332 258 316 238 Z" fill="#0fc3dd" fill-opacity=".1" stroke="#3ee0f5" stroke-opacity=".3"/>
+  <path d="M318 370 C325 382 326 404 320 424 C313 414 311 390 318 370 Z" fill="#0a101c" stroke="#3ee0f5" stroke-opacity=".3"/>
   <!-- Lake Sammamish (stylized) -->
-  <path d="M486 196 C496 226 494 262 506 300 C498 302 490 296 486 288 C476 256 478 226 476 198 Z" fill="#0fc3dd" fill-opacity=".09" stroke="#3ee0f5" stroke-opacity=".3"/>
+  <path d="M474 330 C484 356 482 384 494 414 C486 416 478 410 474 402 C466 376 468 352 464 332 Z" fill="#0fc3dd" fill-opacity=".1" stroke="#3ee0f5" stroke-opacity=".3"/>
+
   <!-- range rings -->
-  {[120, 240, 360].map((r) => <circle cx={hub[0]} cy={hub[1]} r={r} fill="none" stroke="#ffd91a" stroke-opacity=".12" stroke-dasharray="2 6"/>)}
+  {[130, 260].map((r) => <circle cx={hub[1]} cy={hub[2]} r={r} fill="none" stroke="#ffd91a" stroke-opacity=".1" stroke-dasharray="2 6"/>)}
   <!-- connections -->
-  {pts.filter(p => p[0] !== 'Seattle').map(([, x, y]) => (
-    <path d={`M${hub[0]} ${hub[1]} Q ${(hub[0] + x) / 2} ${Math.min(hub[1], y) - 30} ${x} ${y}`} fill="none" stroke="#ffd91a" stroke-opacity=".28" stroke-width="1" class="animate-dash"/>
+  {pts.filter((p) => p !== hub).map(([, x, y]) => (
+    <path d={`M${hub[1]} ${hub[2]} Q ${(hub[1] + x) / 2} ${Math.min(hub[2], y) - 24} ${x} ${y}`} fill="none" stroke="#ffd91a" stroke-opacity=".24" stroke-width="1" class="animate-dash"/>
   ))}
   {pts.map(([name, x, y, side]) => {
     const isHub = name === 'Seattle';
     const anchor = side === 'l' ? 'end' : side === 'r' ? 'start' : 'middle';
     const tx = side === 'l' ? x - 12 : side === 'r' ? x + 12 : x;
-    const ty = side ? y + 4 : y - 12;
+    const ty = side === 'l' || side === 'r' ? y + 5 : side === 'b' ? y + 24 : y - 12;
     return (
       <g>
         {isHub && <circle cx={x} cy={y} r="16" fill="#ffd91a" fill-opacity=".15" class="animate-pulse-dot"/>}
-        <circle cx={x} cy={y} r={isHub ? 7 : 4.5} fill={isHub ? '#ffd91a' : '#0a101c'} stroke="#ffd91a" stroke-width={isHub ? 0 : 1.5}/>
-        <text x={tx} y={ty} text-anchor={anchor} font-family="Inter Variable, sans-serif" font-size={isHub ? 15 : 12} font-weight={isHub ? 700 : 500} fill={isHub ? '#ffffff' : '#cbd5e1'}>{name}</text>
+        <circle cx={x} cy={y} r={isHub ? 7 : 5} fill={isHub ? '#ffd91a' : '#0a101c'} stroke="#ffd91a" stroke-width={isHub ? 0 : 1.75}/>
+        <text x={tx} y={ty} text-anchor={anchor} class:list={['lbl', isHub && 'hub']}>{name}</text>
       </g>
     );
   })}
-  <text x="606" y="420" text-anchor="end" font-family="ui-monospace,monospace" font-size="9" fill="#64748b" letter-spacing="1">STYLIZED · NOT TO SCALE</text>
+  <text x={W - 14} y={H - 14} text-anchor="end" class="meta">STYLIZED · NOT TO SCALE</text>
 </svg>
