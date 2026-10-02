@@ -4,4 +4,4 @@
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 export const WEB3FORMS_ACCESS_KEY = '0e98161e-d579-45ab-b335-e67ad399a28c';
 export const QUOTE_SUBJECT = 'New quote request — soundelectric.com';
-export const QUOTE_FROM_NAME = 'Sound Electric NW Website';
+export const QUOTE_FROM_NAME = 'Sound Electric Website';

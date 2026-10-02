@@ -5,7 +5,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Icon from '../components/Icon.astro';
-import { SITE, SERVICE_AREAS, SERVICES } from '../data/site';
+import { SITE, SERVICE_AREAS, SERVICES, INDUSTRIES } from '../data/site';
 
 interface Props { title: string; description: string; jsonLd?: Record<string, unknown>[]; }
 const { title, description, jsonLd = [] } = Astro.props;
@@ -18,13 +18,13 @@ const business = {
   '@type': 'Electrician',
   '@id': `${SITE.url}/#business`,
   name: SITE.name,
-  alternateName: SITE.shortName,
+  legalName: SITE.legalName,
   url: SITE.url,
   telephone: '+1-425-971-7987',
   email: SITE.email,
   logo: `${SITE.url}/favicon.svg`,
   image: ogImage,
-  description: 'Licensed, bonded and insured commercial electrical contractor serving the Greater Seattle Area.',
+  description: 'Licensed, bonded and insured commercial electrical contractor serving the Greater Seattle Area, specializing in dental offices and veterinary clinics, plus offices, restaurants and service work.',
   areaServed: [
     { '@type': 'AdministrativeArea', name: 'Greater Seattle Area', containedInPlace: { '@type': 'State', name: 'Washington' } },
     { '@type': 'City', name: 'Seattle', containedInPlace: { '@type': 'State', name: 'Washington' } },
@@ -36,7 +36,7 @@ const business = {
     name: `Washington State Electrical Contractor License ${SITE.license}`,
     recognizedBy: { '@type': 'GovernmentOrganization', name: 'Washington State Department of Labor & Industries', url: 'https://lni.wa.gov/' },
   },
-  knowsAbout: SERVICES.map((s) => s.title),
+  knowsAbout: [...SERVICES.map((s) => s.title), ...INDUSTRIES.map((i) => i.schemaName)],
   makesOffer: SERVICES.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.title, url: `${SITE.url}/services/#${s.id}` } })),
 };
 const schemas = [business, ...jsonLd];
@@ -62,7 +62,7 @@ const schemas = [business, ...jsonLd];
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Sound Electric NW: commercial electrical contractor, Seattle" />
+    <meta property="og:image:alt" content="Sound Electric: commercial electrical contractor, Seattle" />
     <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
