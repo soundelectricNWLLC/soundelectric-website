@@ -1,4 +1,6 @@
-// ALL ENTRIES ARE PLACEHOLDERS. Replace with real commercial jobs (photos, location, scope) before launch.
+// ALL ENTRIES ARE PLACEHOLDERS. They are not rendered while SHOW_PROJECTS is false
+// (see src/data/features.mjs). Replace each entry with a real commercial job
+// (photo, location, year, scope), then set SHOW_PROJECTS to true.
 export const PROJECTS = [
   { category: 'Tenant Improvement', title: '[Project name: office TI]', location: '[City / neighborhood]', year: '[Year]', scope: ['[Scope item: e.g. new branch circuits]', '[Scope item: e.g. lighting & controls]', '[Scope item: e.g. permits & inspection]'], art: 0 },
   { category: 'Lighting Retrofit', title: '[Project name: LED retrofit]', location: '[City / neighborhood]', year: '[Year]', scope: ['[Scope item: fixtures replaced]', '[Scope item: controls added]', '[Result: verified, if any]'], art: 1 },

@@ -5,6 +5,12 @@ import ProjectCard from '../components/ProjectCard.astro';
 import Icon from '../components/Icon.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import { PROJECTS } from '../data/projects';
+import { SHOW_PROJECTS } from '../data/site';
+
+// Keep the page in the repo, but send visitors home until real projects are published.
+if (!SHOW_PROJECTS || PROJECTS.length === 0) {
+  return Astro.redirect('/', 302);
+}
 ---
 <Base
   title="Commercial Electrical Projects | Sound Electric NW, Seattle"
