@@ -12,13 +12,15 @@ export const SITE = {
   license: 'SOUNDEN771M6',
   licenseVerifyUrl: 'https://secure.lni.wa.gov/verify/',
   owner: 'Jeremiah',
-  tagline: 'Commercial electrical contractor serving Seattle, King County & the Eastside',
+  tagline: 'Commercial electrical contractor serving the Greater Seattle Area',
 };
 
 // TODO(Jeremiah): confirm this list matches where you actually want to work.
+// Roughly north to south. Keep in sync with the points in src/components/ServiceAreaMap.astro.
 export const SERVICE_AREAS = [
-  'Seattle', 'Bellevue', 'Redmond', 'Kirkland', 'Bothell', 'Woodinville',
-  'Issaquah', 'Sammamish', 'Mercer Island', 'Renton', 'Tukwila', 'Shoreline',
+  'Seattle', 'Bellingham', 'Marysville', 'Shoreline', 'Bothell', 'Woodinville', 'Duvall',
+  'Kirkland', 'Redmond', 'Bellevue', 'Sammamish', 'Mercer Island', 'Issaquah',
+  'Renton', 'Tukwila', 'Federal Way', 'Tacoma', 'Poulsbo', 'Port Orchard',
 ];
 
 const NAV_ITEMS = [
@@ -95,7 +97,7 @@ export const SERVICES: Service[] = [
 export const FAQS = [
   {
     q: 'Do you do residential work?',
-    a: 'No. Sound Electric NW focuses only on commercial electrical work: tenant improvements, build-outs, lighting, service upgrades, EV charging and maintenance for businesses and commercial properties.',
+    a: 'No. Sound Electric NW focuses on commercial electrical work: tenant improvements, build-outs, lighting, service upgrades, EV charging and maintenance for businesses and commercial properties.',
   },
   {
     q: 'Are you licensed, bonded and insured?',
@@ -103,7 +105,7 @@ export const FAQS = [
   },
   {
     q: 'What areas do you serve?',
-    a: 'We serve greater Seattle: Seattle and King County, including Eastside cities like Bellevue, Redmond and Kirkland. If you are not sure your site is in our area, just ask.',
+    a: 'We serve the Greater Seattle Area, from Bellingham and Marysville in the north to Tacoma and Federal Way in the south, east to Duvall and Issaquah, and west across the Sound to Poulsbo and Port Orchard. If you are not sure your site is in our area, just ask.',
   },
   {
     q: 'Do you work with general contractors and property managers?',
