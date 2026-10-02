@@ -1,5 +1,24 @@
+# Preview safety: keep every *.pages.dev URL (production alias and per-deployment/branch
+# aliases) out of search indexes. Host-scoped, so it will NOT apply on soundelectric.com
+# once a custom domain is attached.
 https://:project.pages.dev/*
   X-Robots-Tag: noindex
 
 https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex
+
+# Same for the Worker's workers.dev URL and its preview URLs
+# (soundelectric.soundelectric.workers.dev, <version>-soundelectric.soundelectric.workers.dev).
+https://:worker.:account.workers.dev/*
+  X-Robots-Tag: noindex
+
+# Baseline security headers (all hosts). Carried over from the previous site, minus its CSP.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# Astro emits content-hashed filenames here, so they can be cached forever.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
