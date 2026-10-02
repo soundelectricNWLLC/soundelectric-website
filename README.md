@@ -30,7 +30,7 @@ Uses Playwright-core with the system Chrome at `/usr/bin/google-chrome`. Overrid
 
 ## Where things live
 - `src/data/site.ts`: business facts (phone, email, license), service-area list, service copy, FAQ
-- `src/data/features.mjs`: `SHOW_PROJECTS` and `SHOW_TESTIMONIAL` (both `false` until real content exists)
+- `src/data/features.mjs`: `SHOW_PROJECTS`, `SHOW_TESTIMONIAL`, `SHOW_OWNER_BIO`, and `SHOW_JOB_SITE_PHOTO` (all `false` until real content exists)
 - `src/data/projects.ts`: project cards (**all placeholders**; not rendered while `SHOW_PROJECTS` is false)
 - `src/components/Panelboard.astro`: original SVG illustration of a commercial bolt-on panelboard, PRL1a-style (deadfront and interior modes)
 - `src/layouts/Base.astro`: SEO meta, Open Graph and Twitter tags, plus Electrician JSON-LD (no street address, areaServed Seattle/King County)
@@ -39,7 +39,8 @@ Uses Playwright-core with the system Chrome at `/usr/bin/google-chrome`. Overrid
 ## Needs real content before launch
 - Project cards (Home + /projects): real job photos, city or neighborhood, year, scope, then set `SHOW_PROJECTS` to `true` in `src/data/features.mjs`
 - Testimonial block (Home): a real client quote, used with permission, then set `SHOW_TESTIMONIAL` to `true` in `src/data/features.mjs`
-- Owner bio and team or job-site photo (/about)
+- Owner bio (/about): verifiable facts, then set `SHOW_OWNER_BIO` to `true` in `src/data/features.mjs`
+- Job-site photo (/about): a real photo of Jeremiah or the crew, then set `SHOW_JOB_SITE_PHOTO` to `true` in `src/data/features.mjs`
 - Confirm the service-area city list in `src/data/site.ts`
 - Confirm the FAQ answers (scheduling around business hours, GC/PM work, permits)
 - Replace the panelboard illustrations with Jeremiah's own photos of PRL1a installs, if wanted
