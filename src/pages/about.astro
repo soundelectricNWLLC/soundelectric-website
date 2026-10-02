@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
 import FinalCTA from '../components/FinalCTA.astro';
-import { SITE } from '../data/site';
+import { SITE, SHOW_OWNER_BIO, SHOW_JOB_SITE_PHOTO } from '../data/site';
 const values = [
   { icon: 'HardHat', title: 'Safety first', text: 'Safe work practices on every job, for our crew, your staff and your customers.' },
   { icon: 'FileCheck2', title: 'Code-compliant work', text: 'Permitted, inspected installations that meet the electrical code.' },
@@ -17,24 +17,30 @@ const values = [
   <PageHero eyebrow="About" title='A commercial electrical contractor built for <span class="text-gradient">Seattle</span> business.'
     lead="Sound Electric NW LLC is a licensed, bonded and insured Washington electrical contractor focused on commercial work in Seattle, King County and the Eastside." />
 
-  <section class="container-x mt-16 grid gap-10 sm:mt-24 lg:grid-cols-12">
-    <div class="lg:col-span-7">
-      <span class="eyebrow">Who we are</span>
-      <h2 class="mt-4 text-3xl font-semibold sm:text-4xl">Owner-led, commercial-focused.</h2>
-      <div class="mt-6 space-y-5 text-lg leading-relaxed text-slate-300">
-        <p>Sound Electric NW is led by owner {SITE.owner}. We work with business owners, property managers and general contractors on tenant improvements, build-outs, lighting upgrades, service and panel work, EV charging, and the maintenance that keeps commercial spaces running.</p>
-        <p>When you call, you reach the person responsible for your job, from the first site walk to the final inspection.</p>
-        <p class="rounded-xl border border-dashed border-arc-400/40 bg-arc-400/[0.05] p-5 font-mono text-base text-arc-200">[Owner bio goes here: Jeremiah's background, trade experience and what drives the company. Use only verifiable facts; don't list years or certifications unless they are accurate.]</p>
-      </div>
-    </div>
-    <div class="lg:col-span-5">
-      <div class="grid aspect-[4/5] place-items-center rounded-2xl border border-dashed border-arc-400/40 bg-[radial-gradient(circle_at_30%_20%,rgba(62,224,245,.12),transparent_60%)] p-8 text-center">
-        <div>
-          <Icon name="Camera" class="mx-auto h-10 w-10 text-arc-300" />
-          <p class="mt-4 placeholder-tag">Placeholder</p>
-          <p class="mt-3 font-mono text-sm text-arc-200">[Photo of Jeremiah / crew on a commercial job site]</p>
+  <section class="container-x mt-16 sm:mt-24">
+    <div class:list={['grid gap-10', SHOW_JOB_SITE_PHOTO && 'lg:grid-cols-12']}>
+      <div class:list={[SHOW_JOB_SITE_PHOTO ? 'lg:col-span-7' : 'max-w-3xl']}>
+        <span class="eyebrow">Who we are</span>
+        <h2 class="mt-4 text-3xl font-semibold sm:text-4xl">Owner-led, commercial-focused.</h2>
+        <div class="mt-6 space-y-5 text-lg leading-relaxed text-slate-300">
+          <p>Sound Electric NW is led by owner {SITE.owner}. We work with business owners, property managers and general contractors on tenant improvements, build-outs, lighting upgrades, service and panel work, EV charging, and the maintenance that keeps commercial spaces running.</p>
+          <p>When you call, you reach the person responsible for your job, from the first site walk to the final inspection.</p>
+          {SHOW_OWNER_BIO && (
+            <p class="rounded-xl border border-dashed border-arc-400/40 bg-arc-400/[0.05] p-5 font-mono text-base text-arc-200">[Owner bio goes here: Jeremiah's background, trade experience and what drives the company. Use only verifiable facts; don't list years or certifications unless they are accurate.]</p>
+          )}
         </div>
       </div>
+      {SHOW_JOB_SITE_PHOTO && (
+        <div class="lg:col-span-5">
+          <div class="grid aspect-[4/5] place-items-center rounded-2xl border border-dashed border-arc-400/40 bg-[radial-gradient(circle_at_30%_20%,rgba(62,224,245,.12),transparent_60%)] p-8 text-center">
+            <div>
+              <Icon name="Camera" class="mx-auto h-10 w-10 text-arc-300" />
+              <p class="mt-4 placeholder-tag">Placeholder</p>
+              <p class="mt-3 font-mono text-sm text-arc-200">[Photo of Jeremiah / crew on a commercial job site]</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   </section>
 

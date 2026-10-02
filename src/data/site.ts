@@ -1,6 +1,6 @@
 // Single source of truth for business facts. Only verified facts live here.
 import { SHOW_PROJECTS } from './features.mjs';
-export { SHOW_PROJECTS, SHOW_TESTIMONIAL } from './features.mjs';
+export { SHOW_PROJECTS, SHOW_TESTIMONIAL, SHOW_OWNER_BIO, SHOW_JOB_SITE_PHOTO } from './features.mjs';
 
 export const SITE = {
   name: 'Sound Electric NW LLC',

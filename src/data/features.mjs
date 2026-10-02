@@ -7,5 +7,14 @@
 //
 // Testimonial: set SHOW_TESTIMONIAL to true only for a real client quote used
 // with permission. The homepage block stays hidden while this is false.
+//
+// Owner bio: set SHOW_OWNER_BIO to true after replacing the bracketed bio on
+// /about with verifiable facts. The placeholder paragraph stays hidden while
+// this is false.
+//
+// Job-site photo: set SHOW_JOB_SITE_PHOTO to true after replacing the dashed
+// photo slot on /about with a real photo of Jeremiah or the crew.
 export const SHOW_PROJECTS = false;
 export const SHOW_TESTIMONIAL = false;
+export const SHOW_OWNER_BIO = false;
+export const SHOW_JOB_SITE_PHOTO = false;
