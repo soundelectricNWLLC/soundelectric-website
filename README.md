@@ -1,21 +1,7 @@
-# Sound Electric NW: commercial redesign prototype
+# Sound Electric: commercial redesign prototype
 
-Standalone Astro 5 + Tailwind CSS v4 static site.
-
-## Deploy
-
-The live site is the Cloudflare Worker `soundelectric`, which serves the static assets in `dist/`. Configuration is `wrangler.jsonc`.
-
-```bash
-npm run build
-npx wrangler deploy
-```
-
-To upload a version first and deploy that version separately: `npx wrangler versions upload`, then `npx wrangler versions deploy`.
-
-Build with Node.js 22. Astro 5 needs Node.js 18.20.8+, 20.3+, or 22+.
-
-`public/_headers` sends `X-Robots-Tag: noindex` only on `*.pages.dev` and `*.workers.dev` hosts. Those rules do not apply on soundelectric.com.
+Standalone Astro 5 + Tailwind CSS v4 static site. Builds to `dist/` and deploys to Cloudflare Pages as-is:
+build command `npm run build`, output directory `dist`.
 
 ```bash
 npm install
@@ -30,17 +16,15 @@ Uses Playwright-core with the system Chrome at `/usr/bin/google-chrome`. Overrid
 
 ## Where things live
 - `src/data/site.ts`: business facts (phone, email, license), service-area list, service copy, FAQ
-- `src/data/features.mjs`: `SHOW_PROJECTS`, `SHOW_TESTIMONIAL`, `SHOW_OWNER_BIO`, and `SHOW_JOB_SITE_PHOTO` (all `false` until real content exists)
-- `src/data/projects.ts`: project cards (**all placeholders**; not rendered while `SHOW_PROJECTS` is false)
+- `src/data/projects.ts`: project cards (**all placeholders**)
 - `src/components/Panelboard.astro`: original SVG illustration of a commercial bolt-on panelboard, PRL1a-style (deadfront and interior modes)
-- `src/layouts/Base.astro`: SEO meta, Open Graph and Twitter tags, plus Electrician JSON-LD (no street address, areaServed Greater Seattle Area plus the city list)
+- `src/layouts/Base.astro`: SEO meta, Open Graph and Twitter tags, plus Electrician JSON-LD (no street address, areaServed Seattle/King County)
 - `public/`: favicon.svg/png, apple-touch-icon, og-image.png, robots.txt. The sitemap comes from @astrojs/sitemap.
 
 ## Needs real content before launch
-- Project cards (Home + /projects): real job photos, city or neighborhood, year, scope, then set `SHOW_PROJECTS` to `true` in `src/data/features.mjs`
-- Testimonial block (Home): a real client quote, used with permission, then set `SHOW_TESTIMONIAL` to `true` in `src/data/features.mjs`
-- Owner bio (/about): verifiable facts, then set `SHOW_OWNER_BIO` to `true` in `src/data/features.mjs`
-- Job-site photo (/about): a real photo of Jeremiah or the crew, then set `SHOW_JOB_SITE_PHOTO` to `true` in `src/data/features.mjs`
+- Project cards (Home + /projects): real job photos, city or neighborhood, year, scope
+- Testimonial block (Home): a real client quote, used with permission, or delete the block
+- Owner bio and team or job-site photo (/about)
 - Confirm the service-area city list in `src/data/site.ts`
 - Confirm the FAQ answers (scheduling around business hours, GC/PM work, permits)
 - Replace the panelboard illustrations with Jeremiah's own photos of PRL1a installs, if wanted

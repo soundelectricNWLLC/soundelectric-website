@@ -3,8 +3,9 @@ import { SHOW_PROJECTS } from './features.mjs';
 export { SHOW_PROJECTS, SHOW_TESTIMONIAL, SHOW_OWNER_BIO, SHOW_JOB_SITE_PHOTO } from './features.mjs';
 
 export const SITE = {
-  name: 'Sound Electric NW LLC',
-  shortName: 'Sound Electric NW',
+  name: 'Sound Electric',
+  // Registered legal entity. Use only where a legal name belongs: footer copyright and JSON-LD legalName.
+  legalName: 'Sound Electric NW LLC',
   url: 'https://soundelectric.com',
   phone: '(425) 971-7987',
   phoneHref: 'tel:+14259717987',
@@ -54,7 +55,7 @@ export const SERVICES: Service[] = [
     short: 'Electrical for new and remodeled offices, storefronts and showrooms, built to your layout and schedule.',
     body: 'A build-out has to look finished and run reliably. We wire offices, storefronts and showrooms to match your floor plan: power to every workstation and display, lighting that suits the space, and code-required exit and emergency lighting.',
     includes: ['Power distribution and sub-panels', 'Workstation, furniture and equipment feeds', 'Display, track and accent lighting', 'Signage circuits', 'Exit and emergency lighting'],
-    goodFor: 'Offices, retail storefronts, showrooms and professional suites',
+    goodFor: 'Offices, dental and veterinary clinics, retail storefronts and professional suites',
   },
   {
     id: 'lighting-retrofits',
@@ -90,18 +91,78 @@ export const SERVICES: Service[] = [
     short: 'Tracking down nuisance trips, failed circuits and outages, plus fixes that keep you running.',
     body: 'When something stops working, you need a straight diagnosis and a clean fix. We troubleshoot tripping breakers, dead circuits, flickering lighting and other faults, correct items flagged by inspectors or insurers, and handle the routine repairs that keep a commercial space running.',
     includes: ['Fault finding and circuit tracing', 'Breaker, device and fixture replacement', 'Correction of inspection or insurance findings', 'Panel directory audits and updates', 'Ongoing service for property managers'],
-    goodFor: 'Property managers, facility teams and business owners',
+    goodFor: 'Property managers, facility teams, restaurants and business owners',
+  },
+];
+
+export type Industry = {
+  id: string; title: string; icon: string; label: string; text: string; points: string[]; specialty?: boolean; schemaName: string;
+};
+
+// Industries we serve. Dental and veterinary clinics are the specialties (flagged with a "Specialty" badge).
+// Keep copy generic: no client names, stats, years or certifications.
+export const INDUSTRIES: Industry[] = [
+  {
+    id: 'dental-clinics',
+    title: 'Dental Clinics',
+    icon: 'Tooth',
+    label: 'Dental office electrician',
+    specialty: true,
+    text: 'Dental offices run on specialized equipment, and every operatory depends on it. We plan the electrical around your equipment list, with dedicated circuits where the equipment calls for them.',
+    points: ['Dental chair and delivery unit circuits', 'Air compressor and vacuum system power', 'Imaging and X-ray equipment circuits', 'Sterilization area power', 'Dedicated equipment circuits'],
+    schemaName: 'Dental office electrical work',
+  },
+  {
+    id: 'veterinary-clinics',
+    title: 'Veterinary Clinics',
+    icon: 'PawPrint',
+    label: 'Veterinary clinic electrician',
+    specialty: true,
+    text: 'Veterinary clinics combine medical-style exam and surgery space with kennels and boarding. We wire each area for how it is used, with dedicated circuits for the clinic equipment.',
+    points: ['Exam room and surgery suite power and lighting', 'Imaging equipment circuits', 'Kennel and boarding area electrical', 'Dedicated equipment circuits'],
+    schemaName: 'Veterinary clinic electrical work',
+  },
+  {
+    id: 'offices',
+    title: 'Offices',
+    icon: 'Building',
+    label: 'Office electrician',
+    text: 'Build-outs and tenant improvements, lighting, and power and data rough-in for workstations and shared spaces.',
+    points: ['Build-outs and tenant improvements', 'Lighting and controls', 'Workstation power and data rough-in'],
+    schemaName: 'Office electrical work',
+  },
+  {
+    id: 'restaurants',
+    title: 'Restaurants',
+    icon: 'UtensilsCrossed',
+    label: 'Restaurant electrician',
+    text: 'Electrical for commercial kitchens and dining rooms, from equipment circuits back of house to the lighting out front.',
+    points: ['Kitchen equipment circuits', 'Hood and exhaust fan power', 'Walk-in cooler and freezer circuits', 'Dining room lighting'],
+    schemaName: 'Restaurant electrical work',
+  },
+  {
+    id: 'service-work',
+    title: 'Service Work',
+    icon: 'Wrench',
+    label: 'Commercial service electrician',
+    text: 'Troubleshooting, repairs and maintenance for existing commercial spaces, plus panel and service upgrades when you need more capacity.',
+    points: ['Troubleshooting and repairs', 'Maintenance', 'Panel and service upgrades'],
+    schemaName: 'Commercial electrical service and repair',
   },
 ];
 
 export const FAQS = [
   {
     q: 'Do you do residential work?',
-    a: 'No. Sound Electric NW focuses on commercial electrical work: tenant improvements, build-outs, lighting, service upgrades, EV charging and maintenance for businesses and commercial properties.',
+    a: 'No. Sound Electric focuses on commercial electrical work: tenant improvements, build-outs, lighting, service upgrades, EV charging and maintenance for businesses and commercial properties.',
+  },
+  {
+    q: 'Do you work in dental offices and veterinary clinics?',
+    a: 'Yes. Dental and veterinary clinics are a specialty. We plan the electrical around the equipment you use, including dedicated circuits for chairs, compressors and vacuum systems, imaging, and sterilization, and we can schedule work around patient hours to keep disruption to your practice as small as we can.',
   },
   {
     q: 'Are you licensed, bonded and insured?',
-    a: `Yes. Sound Electric NW LLC is a licensed, bonded and insured Washington electrical contractor, license ${SITE.license}. You can verify the license yourself on the Washington State Department of Labor & Industries (L&I) website.`,
+    a: `Yes. Sound Electric is a licensed, bonded and insured Washington electrical contractor, license ${SITE.license}. You can verify the license yourself on the Washington State Department of Labor & Industries (L&I) website.`,
   },
   {
     q: 'What areas do you serve?',

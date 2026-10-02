@@ -13,7 +13,7 @@ const out = `// Web3Forms (https://web3forms.com) settings for the /contact quot
 export const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 export const WEB3FORMS_ACCESS_KEY = '${key}';
 export const QUOTE_SUBJECT = 'New quote request — soundelectric.com';
-export const QUOTE_FROM_NAME = 'Sound Electric NW Website';
+export const QUOTE_FROM_NAME = 'Sound Electric Website';
 `;
 writeFileSync(new URL('../src/data/forms.ts', import.meta.url), out);
 console.log('Wrote src/data/forms.ts (key length ' + key.length + ')');
