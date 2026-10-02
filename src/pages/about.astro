@@ -3,7 +3,13 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Icon from '../components/Icon.astro';
 import FinalCTA from '../components/FinalCTA.astro';
-import { SITE, SHOW_OWNER_BIO, SHOW_JOB_SITE_PHOTO } from '../data/site';
+import { SITE, SHOW_OWNER_BIO, SHOW_JOB_SITE_PHOTO, SHOW_ABOUT_PAGE } from '../data/site';
+
+// Keep the page in the repo, but send visitors home until the About section is written.
+// (On Cloudflare, dist/_redirects answers /about first with a real 301; this is the fallback.)
+if (!SHOW_ABOUT_PAGE) {
+  return Astro.redirect('/', 301);
+}
 const values = [
   { icon: 'HardHat', title: 'Safety first', text: 'Safe work practices on every job, for our crew, your staff and your customers.' },
   { icon: 'FileCheck2', title: 'Code-compliant work', text: 'Permitted, inspected installations that meet the electrical code.' },

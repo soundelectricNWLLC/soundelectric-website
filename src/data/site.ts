@@ -1,6 +1,6 @@
 // Single source of truth for business facts. Only verified facts live here.
-import { SHOW_PROJECTS } from './features.mjs';
-export { SHOW_PROJECTS, SHOW_TESTIMONIAL, SHOW_OWNER_BIO, SHOW_JOB_SITE_PHOTO } from './features.mjs';
+import { SHOW_PROJECTS, SHOW_ABOUT_PAGE } from './features.mjs';
+export { SHOW_PROJECTS, SHOW_TESTIMONIAL, SHOW_OWNER_BIO, SHOW_JOB_SITE_PHOTO, SHOW_ABOUT_PAGE } from './features.mjs';
 
 export const SITE = {
   name: 'Sound Electric',
@@ -30,8 +30,9 @@ const NAV_ITEMS = [
   { href: '/contact/', label: 'Contact' },
 ];
 
-// Drop Projects while SHOW_PROJECTS is false so header and footer never link to it.
-export const NAV = NAV_ITEMS.filter((item) => SHOW_PROJECTS || item.href !== '/projects/');
+// Drop Projects / About while their flags are false so header, mobile menu and footer never link to them.
+export const NAV = NAV_ITEMS.filter((item) =>
+  (SHOW_PROJECTS || item.href !== '/projects/') && (SHOW_ABOUT_PAGE || item.href !== '/about/'));
 
 export type Service = {
   id: string; title: string; icon: string; short: string; body: string; includes: string[]; goodFor: string;
