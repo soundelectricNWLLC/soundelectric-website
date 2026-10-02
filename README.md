@@ -32,7 +32,8 @@ Uses Playwright-core with the system Chrome at `/usr/bin/google-chrome`. Overrid
 - `src/data/site.ts`: business facts (phone, email, license), service-area list, service copy, industries, FAQ. The public name is Sound Electric. `legalName` is Sound Electric NW LLC, used only as JSON-LD `legalName` and in the copyright line.
 - `src/data/features.mjs`: `SHOW_PROJECTS`, `SHOW_TESTIMONIAL`, `SHOW_OWNER_BIO`, and `SHOW_JOB_SITE_PHOTO` (all `false` until real content exists)
 - `src/data/projects.ts`: project cards (**all placeholders**; not rendered while `SHOW_PROJECTS` is false)
-- `src/components/Panelboard.astro`: original SVG illustration of a commercial bolt-on panelboard, PRL1a-style (deadfront and interior modes)
+- `src/components/Panelboard.astro`: original SVG illustration of a commercial bolt-on panelboard, PRL1a-style (deadfront and interior modes). Kept in the repo, but no page renders it now; the real panel photos replaced it.
+- `src/assets/`: Jeremiah's photos, served through `astro:assets` (`<Picture>`). `hero-cloud-pendants.jpg` is the Home hero. `panel-eaton-pow-r-line.jpg` (lead) is on the Home panel spotlight and Services → Service & Panel Upgrades. `panel-siemens-42-circuit.jpg` is the second photo on Services. The panel photos are stored with EXIF/GPS metadata stripped.
 - `src/layouts/Base.astro`: SEO meta, Open Graph and Twitter tags, plus Electrician JSON-LD (no street address, areaServed Greater Seattle Area plus the city list)
 - `public/`: favicon.svg/png, apple-touch-icon, og-image.png, robots.txt. The sitemap comes from @astrojs/sitemap.
 
@@ -46,7 +47,6 @@ Home (`/#industries`) and Services list the industries in `src/data/site.ts`. De
 - Job-site photo (/about): a real photo of Jeremiah or the crew, then set `SHOW_JOB_SITE_PHOTO` to `true` in `src/data/features.mjs`
 - Confirm the service-area city list in `src/data/site.ts`
 - Confirm the FAQ answers (scheduling around business hours, GC/PM work, permits)
-- Replace the panelboard illustrations with Jeremiah's own photos of PRL1a installs, if wanted
 
 ## Quote form (/contact)
 - Sent from the browser straight to Web3Forms (`https://api.web3forms.com/submit`, fetch + JSON, no page reload). Submissions email jeremiah@soundelectric.com.
@@ -57,7 +57,7 @@ Home (`/#industries`) and Services list the industries in `src/data/site.ts`. De
 - If you ever add a Content-Security-Policy, it must allow `connect-src https://api.web3forms.com` (and `form-action` for the no-JS fallback).
 
 ## Imagery
-No stock photos are used. All art is original inline SVG and CSS. Icons come from Lucide (ISC license) through `lucide-static`.
+No stock photos are used. The photos are Jeremiah's own (see `src/assets/`): the Home hero, plus panel photos on Home and Services, built to WebP with a JPEG fallback (the hero also gets AVIF). Everything else is original inline SVG and CSS. Icons come from Lucide (ISC license) through `lucide-static`.
 Fonts are Inter and Space Grotesk (SIL OFL), self-hosted through @fontsource.
 Free-license photo search (2026-10-01) for commercial bolt-on panelboards:
 - Wikimedia Commons: "File:Eaton_circuit_breaker_panel_open.JPG" (CC BY-SA 3.0) and "File:Electrical_panel_opened.jpg" (CC BY-SA 4.0).

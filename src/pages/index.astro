@@ -1,7 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import Panelboard from '../components/Panelboard.astro';
 import ServiceAreaMap from '../components/ServiceAreaMap.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import FAQ from '../components/FAQ.astro';
@@ -10,6 +9,7 @@ import { SITE, SERVICES, SERVICE_AREAS, INDUSTRIES, SHOW_PROJECTS, SHOW_TESTIMON
 import { PROJECTS } from '../data/projects';
 import { Picture } from 'astro:assets';
 import heroPhoto from '../assets/hero-cloud-pendants.jpg';
+import panelEaton from '../assets/panel-eaton-pow-r-line.jpg';
 
 // Empty lists skip the section, so a flag flip with no real entries still renders nothing.
 const featuredProjects = SHOW_PROJECTS ? PROJECTS.slice(0, 3) : [];
@@ -204,11 +204,29 @@ const steps = [
         </ul>
         <a href="/services/#service-panel-upgrades" class="btn btn-ghost mt-9">Panel upgrade details <Icon name="ArrowRight" class="h-4 w-4" /></a>
       </div>
-      <div class="relative order-1 mx-auto w-full max-w-[260px] sm:max-w-[300px] lg:order-2">
+      <!-- Panel photo: Eaton Pow-R-Line panelboard (replaces the Panelboard.astro SVG illustration) -->
+      <figure class="relative order-1 mx-auto w-full max-w-[290px] sm:max-w-[340px] lg:order-2">
         <div class="absolute inset-10 rounded-full bg-volt-400/15 blur-3xl"></div>
-        <Panelboard uid="spot" mode="interior" door={false} class="relative h-auto w-full" title="Illustration of a commercial bolt-on panelboard interior with deadfront removed, showing copper bus bars, neutral bars and bolt-on breakers" />
-        <p class="mt-3 text-center font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Interior · deadfront removed · illustration</p>
-      </div>
+        <div class="card relative overflow-hidden rounded-[1.75rem] p-2.5 sm:p-3">
+          <div class="relative aspect-[3/4] overflow-hidden rounded-[1.3rem] bg-night-800">
+            <Picture
+              src={panelEaton}
+              formats={['webp']}
+              fallbackFormat="jpg"
+              widths={[320, 480, 640, 800]}
+              sizes="(min-width: 640px) 320px, 270px"
+              loading="lazy"
+              alt="Eaton Pow-R-Line commercial panelboard installed by Sound Electric, door open with the deadfront on and 42 numbered circuit spaces"
+              class="h-full w-full object-cover"
+            />
+            <div class="pointer-events-none absolute inset-0 rounded-[1.3rem] ring-1 ring-inset ring-white/10"></div>
+          </div>
+          <figcaption class="flex items-center justify-between gap-3 px-2.5 pb-1.5 pt-3.5 text-xs text-slate-400">
+            <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-volt-400"></span>Eaton Pow-R-Line<span class="hidden sm:inline">&nbsp;panelboard</span></span>
+            <span class="whitespace-nowrap font-mono uppercase tracking-[0.16em] text-slate-400">Our work</span>
+          </figcaption>
+        </div>
+      </figure>
     </div>
   </section>
 
