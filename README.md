@@ -43,9 +43,13 @@ Uses Playwright-core with the system Chrome at `/usr/bin/google-chrome`. Overrid
 - Confirm the FAQ answers (scheduling around business hours, GC/PM work, permits)
 - Replace the panelboard illustrations with Jeremiah's own photos of PRL1a installs, if wanted
 
-## Not wired
-- Quote form (/contact) is UI only. Connect it to a Cloudflare Pages Function or Worker (e.g. send through Resend or MailChannels),
-  Formspree or Web3Forms, and add Cloudflare Turnstile. Then remove `data-prototype`, the "Prototype · not wired" tag and the submit stub script.
+## Quote form (/contact)
+- Sent from the browser straight to Web3Forms (`https://api.web3forms.com/submit`, fetch + JSON, no page reload). Submissions email jeremiah@soundelectric.com.
+- Settings live in `src/data/forms.ts` (endpoint, public access key, subject, from name). Regenerate it with
+  `WEB3FORMS_ACCESS_KEY=... node scripts/set-web3forms-key.mjs`. Web3Forms keys are public by design.
+- Fields: name, company, email, phone, project_type (sent as the readable label), message. `replyto` is set to the visitor's email.
+- Spam: Web3Forms server-side filtering plus the hidden `botcheck` honeypot. Optional upgrades: hCaptcha (free) or Turnstile (Web3Forms Pro).
+- If you ever add a Content-Security-Policy, it must allow `connect-src https://api.web3forms.com` (and `form-action` for the no-JS fallback).
 
 ## Imagery
 No stock photos are used. All art is original inline SVG and CSS. Icons come from Lucide (ISC license) through `lucide-static`.
