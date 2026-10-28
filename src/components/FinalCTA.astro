@@ -4,15 +4,15 @@ import { SITE } from '../data/site';
 interface Props { heading?: string; text?: string; }
 const { heading = 'Planning a build-out, upgrade or retrofit?', text = 'Send us drawings, photos or a quick description of the scope. We will follow up to talk through the details and next steps.' } = Astro.props;
 ---
-<section class="container-x mt-24 sm:mt-32">
-  <div class="relative overflow-hidden rounded-3xl border border-volt-400/25 bg-night-850 px-6 py-14 sm:px-14 sm:py-20">
+<section class="container-x mt-28 sm:mt-40">
+  <div class="relative overflow-hidden rounded-[2rem] border border-white/[0.12] bg-gradient-to-br from-night-700 via-night-800 to-night-950 px-6 py-16 sm:px-14 sm:py-24">
     <div class="bg-grid mask-radial absolute inset-0 opacity-70"></div>
-    <div class="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-volt-400/20 blur-3xl"></div>
-    <div class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-arc-400/10 blur-3xl"></div>
+    <div class="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-night-600/60 blur-3xl"></div>
+    <div class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-night-700/50 blur-3xl"></div>
     <div class="relative flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-center">
       <div class="max-w-2xl">
         <span class="eyebrow">Request a quote</span>
-        <h2 class="mt-4 text-3xl font-semibold leading-tight sm:text-5xl">{heading}</h2>
+        <h2 class="mt-4 text-3xl leading-[1.04] sm:text-5xl lg:text-6xl">{heading}</h2>
         <p class="mt-5 text-lg leading-relaxed text-slate-300">{text}</p>
       </div>
       <div class="flex w-full flex-col gap-3 sm:w-auto sm:min-w-[280px]">

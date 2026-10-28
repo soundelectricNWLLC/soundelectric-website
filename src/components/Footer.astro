@@ -4,13 +4,13 @@ import Icon from './Icon.astro';
 import { SITE, NAV, SERVICES } from '../data/site';
 const year = new Date().getFullYear();
 ---
-<footer class="relative mt-24 border-t border-white/[0.07] bg-night-950">
+<footer class="relative mt-28 border-t border-white/[0.07] bg-night-950">
   <div class="hairline absolute inset-x-0 top-0"></div>
   <div class="container-x grid grid-cols-2 gap-x-6 gap-y-12 py-16 md:grid-cols-12">
     <div class="col-span-2 md:col-span-4">
       <Logo />
       <p class="mt-5 max-w-xs text-sm leading-relaxed text-slate-400">Commercial electrical contractor serving the Greater Seattle Area.</p>
-      <a href={SITE.licenseVerifyUrl} target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 rounded-lg border border-white/10 px-3 py-2 font-mono text-xs text-slate-300 transition hover:border-volt-400/50 hover:text-white">
+      <a href={SITE.licenseVerifyUrl} target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-mono text-xs text-slate-300 transition hover:border-white/50 hover:text-white">
         <Icon name="ShieldCheck" class="h-4 w-4 text-volt-400" /> WA Lic. {SITE.license} · Verify at L&I <Icon name="ArrowUpRight" class="h-3.5 w-3.5" />
       </a>
     </div>

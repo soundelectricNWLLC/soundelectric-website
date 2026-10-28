@@ -1,6 +1,6 @@
 ---
-import '@fontsource-variable/inter';
-import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -49,7 +49,21 @@ const schemas = [business, ...jsonLd];
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#070b14" />
+    <!-- Motion gate: pinned hero + scroll reveals only for visitors who have not asked for reduced motion.
+         If the main script has not signalled ready after 3s (JS failed), switch them back off so nothing stays hidden. -->
+    <script is:inline>
+      (function () {
+        try {
+          var d = document.documentElement;
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            d.classList.add('reveal-on');
+            if (window.innerHeight >= (window.innerWidth >= 1024 ? 700 : 560)) d.classList.add('film-on');
+            setTimeout(function () { if (!window.__seReady) d.classList.remove('reveal-on', 'film-on'); }, 3000);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta name="theme-color" content="#04070f" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -73,12 +87,16 @@ const schemas = [business, ...jsonLd];
     {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body class="min-h-screen bg-night-900 pb-20 md:pb-0">
-    <a href="#main" class="sr-only z-[60] rounded-lg bg-volt-400 px-4 py-2 font-semibold text-night-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
+    <a href="#main" class="sr-only z-[60] rounded-lg bg-white px-4 py-2 font-semibold text-night-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <Header />
     <main id="main"><slot /></main>
     <Footer />
+    <script>
+      import '../scripts/motion';
+    </script>
     <!-- Mobile action bar -->
-    <div class="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-night-950/90 p-3 backdrop-blur-xl md:hidden">
+    <div class="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-night-950/85 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-xl md:hidden">
       <div class="grid grid-cols-2 gap-2.5">
         <a href={SITE.phoneHref} class="btn btn-ghost !py-3"><Icon name="Phone" class="h-4 w-4 text-volt-400" />Call now</a>
         <a href="/contact/" class="btn btn-primary !py-3">Request a Quote</a>
