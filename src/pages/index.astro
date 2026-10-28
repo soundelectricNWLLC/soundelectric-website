@@ -34,85 +34,90 @@ const steps = [
   title="Commercial Electrician Seattle | Sound Electric"
   description="Licensed commercial electrician serving the Greater Seattle Area. Dental office electrician and veterinary clinic electrician specialists, plus offices, restaurants and service work. Call (425) 971-7987.">
 
-  <!-- HERO -->
-  <section class="relative overflow-hidden">
-    <div class="bg-grid mask-radial absolute inset-0"></div>
-    <div class="absolute -top-40 right-[-10%] h-[36rem] w-[36rem] rounded-full bg-volt-400/[0.13] blur-3xl"></div>
-    <div class="absolute left-[-15%] top-1/3 h-[28rem] w-[28rem] rounded-full bg-arc-400/[0.07] blur-3xl"></div>
-    <div class="container-x relative grid items-center gap-14 pb-20 pt-14 sm:pt-20 lg:grid-cols-12 lg:gap-10 lg:pb-28">
-      <div class="lg:col-span-7">
-        <a href={SITE.licenseVerifyUrl} target="_blank" rel="noopener" class="inline-flex max-w-full items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] py-1.5 pl-2 pr-4 text-xs text-slate-300 transition hover:border-volt-400/50">
-          <span class="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-volt-400/15 px-2 py-0.5 font-mono font-semibold text-volt-300"><span class="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-volt-400"></span>WA L&I</span>
-          <span class="truncate"><span class="hidden sm:inline">Licensed, Bonded &amp; Insured · </span>Lic. {SITE.license}</span>
-          <Icon name="ArrowUpRight" class="h-3.5 w-3.5 text-slate-400" />
-        </a>
-        <h1 class="mt-7 text-[2.6rem] font-semibold leading-[1.02] sm:text-6xl xl:text-7xl">
-          Commercial electrical for <span class="text-gradient">Seattle</span> businesses.
-        </h1>
-        <p class="mt-7 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-          Tenant improvements, office and retail build-outs, LED lighting retrofits, service and panel upgrades, and EV charging, done by a licensed Washington electrical contractor serving the Greater Seattle Area.
-        </p>
-        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a href="/contact/" class="btn btn-primary !px-7 !py-4 text-base">Request a Quote <Icon name="ArrowRight" class="h-4 w-4" /></a>
-          <a href={SITE.phoneHref} class="btn btn-ghost !px-7 !py-4 text-base"><Icon name="Phone" class="h-4 w-4 text-volt-400" />{SITE.phone}</a>
+  <!-- HERO. With motion allowed (html.film-on) this is a pinned "film": the photo pushes in while the copy
+       hands off to the credentials card. Otherwise it is an ordinary stacked layout with the same content. -->
+  <section class="film" id="top">
+    <div class="stage">
+      <div class="navy-glow pointer-events-none absolute inset-0"></div>
+      <div class="container-x grid items-center gap-12 pb-16 pt-32 sm:pt-36 lg:grid-cols-12 lg:gap-10 lg:pb-24">
+        <div class="film-hero lg:col-span-7">
+          <a href={SITE.licenseVerifyUrl} target="_blank" rel="noopener" class="inline-flex max-w-full items-center gap-2.5 rounded-full border border-white/15 bg-night-950/50 py-1.5 pl-2 pr-4 text-xs text-slate-200 backdrop-blur transition hover:border-white/50">
+            <span class="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-white/10 px-2 py-0.5 font-mono font-semibold text-white"><span class="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-volt-400"></span>WA L&I</span>
+            <span class="truncate"><span class="hidden sm:inline">Licensed, Bonded &amp; Insured · </span>Lic. {SITE.license}</span>
+            <Icon name="ArrowUpRight" class="h-3.5 w-3.5 text-slate-300" />
+          </a>
+          <h1 class="mt-7 text-[2.6rem] font-medium leading-[1.02] sm:text-6xl xl:text-[4.25rem]">
+            Commercial electrical for <span class="text-gradient">Seattle</span> businesses.
+          </h1>
+          <p class="mt-7 max-w-xl text-lg leading-relaxed text-slate-200 sm:text-xl">
+            Tenant improvements, office and retail build-outs, LED lighting retrofits, service and panel upgrades, and EV charging, done by a licensed Washington electrical contractor serving the Greater Seattle Area.
+          </p>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="/contact/" class="btn btn-primary !px-7 text-base">Request a Quote <Icon name="ArrowRight" class="h-4 w-4" /></a>
+            <a href={SITE.phoneHref} class="btn btn-ghost !px-7 text-base"><Icon name="Phone" class="h-4 w-4" />{SITE.phone}</a>
+          </div>
+          <dl class="mt-10 grid max-w-xl grid-cols-3 gap-6 border-t border-white/15 pt-7">
+            <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-300">Focus</dt><dd class="mt-1.5 font-display text-[15px] font-medium leading-snug text-white sm:text-lg">Commercial</dd></div>
+            <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-300">Area</dt><dd class="mt-1.5 font-display text-[15px] font-medium leading-snug text-white sm:text-lg">Greater Seattle Area</dd></div>
+            <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-300">Status</dt><dd class="mt-1.5 font-display text-[15px] font-medium leading-snug text-white sm:text-lg">Licensed · Bonded · Insured</dd></div>
+          </dl>
         </div>
-        <dl class="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-white/[0.08] pt-8">
-          <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Focus</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Commercial</dd></div>
-          <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Area</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Greater Seattle Area</dd></div>
-          <div><dt class="font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">Status</dt><dd class="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white sm:text-lg">Licensed · Bonded · Insured</dd></div>
-        </dl>
+
+        <!-- Hero photo: Sound Electric commercial lighting install -->
+        <figure class="film-photo relative mx-auto w-full max-w-[400px] sm:max-w-[440px] lg:col-span-5 lg:mr-0 lg:max-w-[440px]">
+          <div class="film-glow absolute inset-8 rounded-[2rem] bg-night-600/60 blur-3xl"></div>
+          <div class="film-frame card relative overflow-hidden rounded-[1.75rem] p-2.5 sm:p-3">
+            <div class="film-img relative aspect-[4/5] overflow-hidden rounded-[1.3rem] bg-night-800">
+              <Picture
+                src={heroPhoto}
+                width={880}
+                formats={['avif', 'webp']}
+                fallbackFormat="jpg"
+                widths={[400, 600, 880, 1100, 1536]}
+                sizes="(min-width: 1024px) 62vw, (min-width: 640px) 440px, calc(100vw - 2.5rem)"
+                loading="eager"
+                fetchpriority="high"
+                alt="Cloud-shaped pendant lights under a cove-lit ceiling, a Sound Electric commercial lighting install"
+                class="h-full w-full object-cover object-[50%_40%]"
+              />
+              <div class="pointer-events-none absolute inset-0 rounded-[1.3rem] ring-1 ring-inset ring-white/10"></div>
+            </div>
+            <figcaption class="flex items-center justify-between gap-3 px-2.5 pb-1.5 pt-3.5 text-xs text-slate-300">
+              <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-volt-400"></span>Commercial lighting install</span>
+              <span class="font-mono uppercase tracking-[0.16em] text-slate-300">Our work</span>
+            </figcaption>
+          </div>
+        </figure>
       </div>
 
-      <!-- Hero photo: Sound Electric commercial lighting install -->
-      <figure class="relative mx-auto w-full max-w-[400px] sm:max-w-[440px] lg:col-span-5 lg:mr-0 lg:max-w-[440px]">
-        <div class="absolute inset-8 rounded-[2rem] bg-volt-400/15 blur-3xl"></div>
-        <div class="card relative overflow-hidden rounded-[1.75rem] p-2.5 sm:p-3">
-          <div class="relative aspect-[4/5] overflow-hidden rounded-[1.3rem] bg-night-800">
-            <Picture
-              src={heroPhoto}
-              width={880}
-              formats={['avif', 'webp']}
-              fallbackFormat="jpg"
-              widths={[400, 600, 880, 1100]}
-              sizes="(min-width: 640px) 440px, calc(100vw - 2.5rem)"
-              loading="eager"
-              fetchpriority="high"
-              alt="Cloud-shaped pendant lights under a cove-lit ceiling, a Sound Electric commercial lighting install"
-              class="h-full w-full object-cover object-[50%_40%]"
-            />
-            <div class="pointer-events-none absolute inset-0 rounded-[1.3rem] ring-1 ring-inset ring-white/10"></div>
-          </div>
-          <figcaption class="flex items-center justify-between gap-3 px-2.5 pb-1.5 pt-3.5 text-xs text-slate-400">
-            <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-volt-400"></span>Commercial lighting install</span>
-            <span class="font-mono uppercase tracking-[0.16em] text-slate-400">Our work</span>
-          </figcaption>
-        </div>
-      </figure>
-    </div>
-  </section>
-
-  <!-- CREDENTIALS STRIP -->
-  <section aria-label="Credentials" class="border-y border-white/[0.07] bg-night-950/60">
-    <div class="container-x grid divide-y divide-white/[0.07] sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
-      {creds.map((c) => (
-        <div class="flex gap-4 py-7 sm:px-2 lg:px-7 first:lg:pl-0">
-          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-volt-400/25 bg-volt-400/[0.08] text-volt-400"><Icon name={c.icon} class="h-5 w-5" /></span>
-          <div>
-            <p class="font-display font-semibold text-white">{c.title}</p>
-            <p class="mt-1 text-sm text-slate-400">{c.text}</p>
-            {c.href && <a href={c.href} target="_blank" rel="noopener" class="mt-1.5 inline-flex items-center gap-1 text-sm font-medium text-volt-400 hover:text-volt-300">{c.link}<Icon name="ArrowUpRight" class="h-3.5 w-3.5" /></a>}
+      <!-- CREDENTIALS: a strip below the hero normally; a glass card that fades in over the photo in the pinned film. -->
+      <section aria-label="Credentials" class="film-creds">
+        <div class="film-creds-card">
+          <div class="container-x creds-grid">
+            {creds.map((c) => (
+              <div class="creds-item">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-white/20 bg-white/[0.07] text-white"><Icon name={c.icon} class="h-5 w-5" /></span>
+                <div>
+                  <p class="font-display font-medium text-white">{c.title}</p>
+                  <p class="mt-1 text-sm text-slate-300">{c.text}</p>
+                  {c.href && <a href={c.href} target="_blank" rel="noopener" class="mt-1.5 inline-flex items-center gap-1 text-sm font-medium text-volt-400 hover:text-volt-300">{c.link}<Icon name="ArrowUpRight" class="h-3.5 w-3.5" /></a>}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
+      </section>
+      <div class="film-shade" aria-hidden="true"></div>
+      <div class="film-scroll-hint" aria-hidden="true">Scroll<i></i></div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section class="container-x mt-24 sm:mt-32" id="services">
+  <section class="container-x mt-28 sm:mt-40" id="services">
     <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
       <div class="max-w-2xl">
         <span class="eyebrow">Services</span>
-        <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Commercial electrical work, end to end.</h2>
+        <h2 class="mt-4 text-3xl font-medium sm:text-5xl">Commercial electrical work, end to end.</h2>
         <p class="mt-5 text-lg text-slate-400">From a single panel swap to a full-floor build-out, one licensed contractor for the electrical scope.</p>
       </div>
       <a href="/services/" class="group inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-volt-300">All services <Icon name="ArrowRight" class="h-4 w-4 transition group-hover:translate-x-1" /></a>
@@ -121,7 +126,7 @@ const steps = [
       {SERVICES.map((s, i) => (
         <a href={`/services/#${s.id}`} class="card card-hover group flex flex-col p-7">
           <div class="flex items-start justify-between">
-            <span class="grid h-12 w-12 place-items-center rounded-xl border border-white/10 bg-night-800 text-volt-400 transition group-hover:border-volt-400/50 group-hover:bg-volt-400 group-hover:text-night-950"><Icon name={s.icon} class="h-6 w-6" /></span>
+            <span class="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-night-800 text-volt-400 transition group-hover:border-white group-hover:bg-white group-hover:text-night-950"><Icon name={s.icon} class="h-6 w-6" /></span>
             <span class="font-mono text-xs text-slate-500" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
           </div>
           <h3 class="mt-6 text-xl font-semibold">{s.title}</h3>
@@ -133,22 +138,22 @@ const steps = [
   </section>
 
   <!-- INDUSTRIES -->
-  <section class="container-x mt-24 sm:mt-32" id="industries">
+  <section class="container-x mt-28 sm:mt-40" id="industries">
     <div class="max-w-3xl">
       <span class="eyebrow">Industries we serve</span>
-      <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Dental &amp; veterinary clinic specialists.</h2>
+      <h2 class="mt-4 text-3xl font-medium sm:text-5xl">Dental &amp; veterinary clinic specialists.</h2>
       <p class="mt-5 text-lg text-slate-400">Clinics depend on specialized equipment, and the electrical has to be planned around it. We also wire offices and restaurants, and handle service work for commercial spaces across the Greater Seattle Area.</p>
     </div>
     <div class="mt-12 grid gap-5 lg:grid-cols-2">
       {specialties.map((ind) => (
-        <article id={`industry-${ind.id}`} class="card relative flex flex-col overflow-hidden !border-volt-400/30 p-7 sm:p-9">
-          <div class="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-volt-400/[0.12] blur-3xl" aria-hidden="true"></div>
+        <article id={`industry-${ind.id}`} class="card relative flex flex-col overflow-hidden !border-white/25 p-7 sm:p-9">
+          <div class="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-night-600/60 blur-3xl" aria-hidden="true"></div>
           <div class="relative flex items-start justify-between gap-4">
-            <span class="grid h-14 w-14 place-items-center rounded-2xl bg-volt-400 text-night-950 shadow-[0_0_30px_-6px_rgba(255,217,26,.55)]"><Icon name={ind.icon} class="h-7 w-7" /></span>
-            <span class="inline-flex items-center gap-1.5 rounded-full bg-volt-400 px-3 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-night-950"><Icon name="Star" class="h-3 w-3" />Specialty</span>
+            <span class="grid h-14 w-14 place-items-center rounded-full bg-white text-night-950 shadow-[0_0_30px_-6px_rgba(169,200,242,.5)]"><Icon name={ind.icon} class="h-7 w-7" /></span>
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.16em] text-night-950"><Icon name="Star" class="h-3 w-3" />Specialty</span>
           </div>
           <p class="relative mt-7 font-mono text-[11px] uppercase tracking-[0.2em] text-volt-400">{ind.label}</p>
-          <h3 class="relative mt-2 text-2xl font-semibold sm:text-3xl">{ind.title}</h3>
+          <h3 class="relative mt-2 text-2xl font-medium sm:text-3xl">{ind.title}</h3>
           <p class="relative mt-4 leading-relaxed text-slate-300">{ind.text}</p>
           <ul class="relative mt-6 grid flex-1 content-start gap-x-5 gap-y-3 text-sm sm:grid-cols-2">
             {ind.points.map((t) => <li class="flex gap-2.5 text-slate-200"><Icon name="CircleCheck" class="mt-px h-4 w-4 text-volt-400" />{t}</li>)}
@@ -160,7 +165,7 @@ const steps = [
     <div class="mt-5 grid gap-5 md:grid-cols-3">
       {otherIndustries.map((ind) => (
         <article id={`industry-${ind.id}`} class="card flex flex-col p-7">
-          <span class="grid h-12 w-12 place-items-center rounded-xl border border-white/10 bg-night-800 text-volt-400"><Icon name={ind.icon} class="h-6 w-6" /></span>
+          <span class="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-night-800 text-volt-400"><Icon name={ind.icon} class="h-6 w-6" /></span>
           <p class="mt-6 font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate-400">{ind.label}</p>
           <h3 class="mt-2 text-xl font-semibold">{ind.title}</h3>
           <p class="mt-3 leading-relaxed text-slate-400">{ind.text}</p>
@@ -173,16 +178,17 @@ const steps = [
   </section>
 
   <!-- PROCESS -->
-  <section class="container-x mt-24 sm:mt-32">
+  <section class="container-x mt-28 sm:mt-40">
     <div class="max-w-2xl">
       <span class="eyebrow">How we work</span>
-      <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">A clear process, start to closeout.</h2>
+      <h2 class="mt-4 text-3xl font-medium sm:text-5xl">A clear process, start to closeout.</h2>
     </div>
     <ol class="relative mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-      <div class="absolute left-0 right-0 top-[27px] hidden h-px bg-gradient-to-r from-volt-400/60 via-volt-400/20 to-transparent lg:block" aria-hidden="true"></div>
+      <div class="absolute left-0 right-0 top-[27px] hidden h-px bg-white/10 lg:block" aria-hidden="true"></div>
+      <div data-line class="absolute left-0 right-0 top-[27px] hidden h-px bg-gradient-to-r from-white via-volt-400 to-volt-500/40 lg:block" aria-hidden="true"></div>
       {steps.map((s) => (
         <li class="relative">
-          <span class="relative z-10 grid h-14 w-14 place-items-center rounded-2xl border border-volt-400/40 bg-night-900 font-mono text-sm font-semibold text-volt-400 shadow-[0_0_30px_-6px_rgba(255,217,26,.45)]">{s.n}</span>
+          <span class="relative z-10 grid h-14 w-14 place-items-center rounded-2xl border border-white/25 bg-night-900 font-mono text-sm font-semibold text-white shadow-[0_0_30px_-6px_rgba(169,200,242,.4)]">{s.n}</span>
           <h3 class="mt-6 text-xl font-semibold">{s.title}</h3>
           <p class="mt-3 leading-relaxed text-slate-400">{s.text}</p>
         </li>
@@ -191,11 +197,11 @@ const steps = [
   </section>
 
   <!-- PANEL SPOTLIGHT -->
-  <section class="container-x mt-24 sm:mt-32">
+  <section class="container-x mt-28 sm:mt-40" id="panels">
     <div class="card grid items-center gap-10 overflow-hidden p-6 sm:p-10 lg:grid-cols-2 lg:p-14">
       <div class="order-2 lg:order-1">
         <span class="eyebrow">Panel upgrades &amp; service</span>
-        <h2 class="mt-4 text-3xl font-semibold sm:text-4xl">Panel upgrades, inspections &amp; torque service.</h2>
+        <h2 class="mt-4 text-3xl font-medium sm:text-4xl">Panel upgrades, inspections &amp; torque service.</h2>
         <p class="mt-5 leading-relaxed text-slate-400">Clinics, offices and restaurants need panels with room for their equipment and connections that stay tight. We upgrade and replace commercial panels when you need more capacity, inspect existing panels, and check and re-torque terminations and lugs to the manufacturer's specifications. We leave a typed circuit directory so your staff can find any circuit quickly.</p>
         <ul class="mt-7 grid gap-3 text-sm sm:grid-cols-2">
           {['Panel upgrades & replacements', 'Panel inspections', 'Torque checks to manufacturer spec', 'Load calcs & utility coordination'].map((t) => (
@@ -205,8 +211,8 @@ const steps = [
         <a href="/services/#service-panel-upgrades" class="btn btn-ghost mt-9">Panel service details <Icon name="ArrowRight" class="h-4 w-4" /></a>
       </div>
       {/* Panel photo: Eaton Pow-R-Line panelboard (replaces the Panelboard.astro SVG illustration). */}
-      <figure class="relative order-1 mx-auto w-full max-w-[290px] sm:max-w-[340px] lg:order-2">
-        <div class="absolute inset-10 rounded-full bg-volt-400/15 blur-3xl"></div>
+      <figure class="relative order-1 mx-auto w-full max-w-[290px] sm:max-w-[340px] lg:order-2" data-parallax="0.12">
+        <div class="absolute inset-10 rounded-full bg-night-600/60 blur-3xl"></div>
         <div class="card relative overflow-hidden rounded-[1.75rem] p-2.5 sm:p-3">
           <div class="relative aspect-[3/4] overflow-hidden rounded-[1.3rem] bg-night-800">
             <Picture
@@ -232,13 +238,13 @@ const steps = [
 
   <!-- PROJECTS + TESTIMONIAL. Hidden until SHOW_PROJECTS / SHOW_TESTIMONIAL in src/data/features.mjs. -->
   {(featuredProjects.length > 0 || showTestimonial) && (
-    <section class="container-x mt-24 sm:mt-32">
+    <section class="container-x mt-28 sm:mt-40">
       {featuredProjects.length > 0 && (
         <>
           <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div class="max-w-2xl">
               <span class="eyebrow">Projects</span>
-              <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Recent commercial work.</h2>
+              <h2 class="mt-4 text-3xl font-medium sm:text-5xl">Recent commercial work.</h2>
               <p class="mt-5 text-slate-400"><span class="placeholder-tag">Placeholder</span> <span class="ml-2">These cards are slots for real commercial jobs: photos, locations and scope.</span></p>
             </div>
             <a href="/projects/" class="group inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-volt-300">View all projects <Icon name="ArrowRight" class="h-4 w-4 transition group-hover:translate-x-1" /></a>
@@ -259,15 +265,15 @@ const steps = [
   )}
 
   <!-- SERVICE AREA -->
-  <section class="container-x mt-24 sm:mt-32" id="service-area">
+  <section class="container-x mt-28 sm:mt-40" id="service-area">
     <div class="grid items-center gap-12 lg:grid-cols-12">
       <div class="lg:col-span-5">
         <span class="eyebrow">Service area</span>
-        <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">The Greater Seattle Area.</h2>
+        <h2 class="mt-4 text-3xl font-medium sm:text-5xl">The Greater Seattle Area.</h2>
         <p class="mt-5 leading-relaxed text-slate-400">We work on commercial sites across the Greater Seattle Area: north to Marysville and Bellingham, south to Federal Way and Tacoma, east to Duvall and Issaquah, and across the Sound to Poulsbo and Port Orchard. Not sure your site is covered? Just ask.</p>
         <ul class="mt-8 flex flex-wrap gap-2">
           {SERVICE_AREAS.map((c) => <li class="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-sm text-slate-200">{c}</li>)}
-          <li class="rounded-full border border-volt-400/30 bg-volt-400/10 px-3.5 py-1.5 text-sm text-volt-300">+ the Greater Seattle Area</li>
+          <li class="rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-sm text-white">+ the Greater Seattle Area</li>
         </ul>
       </div>
       <div class="lg:col-span-7">
@@ -277,14 +283,24 @@ const steps = [
   </section>
 
   <!-- FAQ -->
-  <section class="container-x mt-24 grid gap-12 sm:mt-32 lg:grid-cols-12">
+  <section class="container-x mt-28 grid gap-12 sm:mt-40 lg:grid-cols-12" id="faq">
     <div class="self-start lg:sticky lg:top-28 lg:col-span-4">
       <span class="eyebrow">FAQ</span>
-      <h2 class="mt-4 text-3xl font-semibold sm:text-5xl">Common questions.</h2>
+      <h2 class="mt-4 text-3xl font-medium sm:text-5xl">Common questions.</h2>
       <p class="mt-5 text-slate-400">Don't see yours? Call <a href={SITE.phoneHref} class="font-semibold text-white hover:text-volt-300">{SITE.phone}</a> or email <a href={`mailto:${SITE.email}`} class="font-semibold text-white hover:text-volt-300">{SITE.email}</a>.</p>
     </div>
     <div class="lg:col-span-8"><FAQ /></div>
   </section>
 
   <FinalCTA />
+
+  <!-- Floating jump-nav (desktop, motion allowed): links to sections that already exist on this page. -->
+  <nav class="dock" aria-label="Jump to section">
+    <a href="#services">Services</a>
+    <a href="#industries">Industries</a>
+    <a href="#panels">Panels</a>
+    <a href="#service-area">Service area</a>
+    <a href="#faq">FAQ</a>
+    <a href="/contact/" class="dock-cta">Request a Quote</a>
+  </nav>
 </Base>

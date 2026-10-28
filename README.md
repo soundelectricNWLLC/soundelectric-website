@@ -37,6 +37,12 @@ Uses Playwright-core with the system Chrome at `/usr/bin/google-chrome`. Overrid
 - `src/layouts/Base.astro`: SEO meta, Open Graph and Twitter tags, plus Electrician JSON-LD (no street address, areaServed Greater Seattle Area plus the city list)
 - `public/`: favicon.svg/png, apple-touch-icon, og-image.png, robots.txt. The sitemap comes from @astrojs/sitemap.
 
+## Look and motion (v8)
+Navy and near-black surfaces, white type, and a pale steel-blue accent (the old electric yellow is gone), set in Geist and Geist Mono, with pill buttons and mono eyebrows. Colors are the `night-*` and `volt-*` tokens in `src/styles/global.css`; the `volt-*` names were kept so existing classes still work, but the values are now steel blue.
+- Home hero is a pinned stage: the cloud-pendant photo pushes in as you scroll, the hero copy fades out, and the credentials card fades in. A floating pill dock then links to Services, Industries, Panels, Service area, FAQ and Request a Quote (desktop only).
+- Other scroll effects: section reveals, a thin scroll-progress bar, parallax on the panel photos, and a process line that draws as you scroll. All of it is vanilla JS in `src/scripts/motion.ts`.
+- Reduced motion and no JS: a small inline script in `src/layouts/Base.astro` adds `reveal-on` and `film-on` to `<html>` only when the visitor has not asked for reduced motion and JS runs. Without those classes the page is a plain, fully visible layout with the same content. The pinned hero also needs a tall viewport (700px on desktop, 560px on phones). A 3 second failsafe removes the classes if the motion script never starts.
+
 ## Pages
 Live: Home (`/`), Services (`/services/`), Contact (`/contact/`), plus the 404 page.
 Hidden behind flags in `src/data/features.mjs` (the source stays in the repo):

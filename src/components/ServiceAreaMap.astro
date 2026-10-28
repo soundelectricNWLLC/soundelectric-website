@@ -33,7 +33,7 @@ const W = 640, H = 660;
     }
   </style>
   <defs>
-    <radialGradient id="sa-glow" cx="0.38" cy="0.55" r="0.6"><stop offset="0" stop-color="#ffd91a" stop-opacity=".16"/><stop offset="1" stop-color="#ffd91a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="sa-glow" cx="0.38" cy="0.55" r="0.6"><stop offset="0" stop-color="#a9c8f2" stop-opacity=".16"/><stop offset="1" stop-color="#a9c8f2" stop-opacity="0"/></radialGradient>
     <pattern id="sa-dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#94a3b8" fill-opacity=".14"/></pattern>
   </defs>
   <rect width={W} height={H} fill="url(#sa-dots)"/>
@@ -62,10 +62,10 @@ const W = 640, H = 660;
   <path d="M474 330 C484 356 482 384 494 414 C486 416 478 410 474 402 C466 376 468 352 464 332 Z" fill="#0fc3dd" fill-opacity=".1" stroke="#3ee0f5" stroke-opacity=".3"/>
 
   <!-- range rings -->
-  {[130, 260].map((r) => <circle cx={hub[1]} cy={hub[2]} r={r} fill="none" stroke="#ffd91a" stroke-opacity=".1" stroke-dasharray="2 6"/>)}
+  {[130, 260].map((r) => <circle cx={hub[1]} cy={hub[2]} r={r} fill="none" stroke="#a9c8f2" stroke-opacity=".1" stroke-dasharray="2 6"/>)}
   <!-- connections -->
   {pts.filter((p) => p !== hub).map(([, x, y]) => (
-    <path d={`M${hub[1]} ${hub[2]} Q ${(hub[1] + x) / 2} ${Math.min(hub[2], y) - 24} ${x} ${y}`} fill="none" stroke="#ffd91a" stroke-opacity=".24" stroke-width="1" class="animate-dash"/>
+    <path d={`M${hub[1]} ${hub[2]} Q ${(hub[1] + x) / 2} ${Math.min(hub[2], y) - 24} ${x} ${y}`} fill="none" stroke="#a9c8f2" stroke-opacity=".24" stroke-width="1" class="animate-dash"/>
   ))}
   {pts.map(([name, x, y, side]) => {
     const isHub = name === 'Seattle';
@@ -74,8 +74,8 @@ const W = 640, H = 660;
     const ty = side === 'l' || side === 'r' ? y + 5 : side === 'b' ? y + 24 : y - 12;
     return (
       <g>
-        {isHub && <circle cx={x} cy={y} r="16" fill="#ffd91a" fill-opacity=".15" class="animate-pulse-dot"/>}
-        <circle cx={x} cy={y} r={isHub ? 7 : 5} fill={isHub ? '#ffd91a' : '#0a101c'} stroke="#ffd91a" stroke-width={isHub ? 0 : 1.75}/>
+        {isHub && <circle cx={x} cy={y} r="16" fill="#a9c8f2" fill-opacity=".15" class="animate-pulse-dot"/>}
+        <circle cx={x} cy={y} r={isHub ? 7 : 5} fill={isHub ? '#a9c8f2' : '#0a101c'} stroke="#a9c8f2" stroke-width={isHub ? 0 : 1.75}/>
         <text x={tx} y={ty} text-anchor={anchor} class:list={['lbl', isHub && 'hub']}>{name}</text>
       </g>
     );
