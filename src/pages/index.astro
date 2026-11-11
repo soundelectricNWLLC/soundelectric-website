@@ -10,6 +10,7 @@ import { PROJECTS } from '../data/projects';
 import { Picture } from 'astro:assets';
 import heroPhoto from '../assets/hero-cloud-pendants.jpg';
 import panelEaton from '../assets/panel-eaton-pow-r-line.jpg';
+import featureCeiling from '../assets/feature-ceiling-nebula.jpg';
 
 // Empty lists skip the section, so a flag flip with no real entries still renders nothing.
 const featuredProjects = SHOW_PROJECTS ? PROJECTS.slice(0, 3) : [];
@@ -110,6 +111,36 @@ const steps = [
       <div class="film-shade" aria-hidden="true"></div>
       <div class="film-scroll-hint" aria-hidden="true">Scroll<i></i></div>
     </div>
+  </section>
+
+  <!-- FEATURE LIGHTING. Jeremiah's photo, placed immediately after the pinned hero. -->
+  <section class="mx-auto mt-20 w-full max-w-[90rem] px-5 sm:mt-28 sm:px-8" id="feature-lighting">
+    <div class="max-w-2xl">
+      <span class="eyebrow">Feature lighting</span>
+      <h2 class="mt-4 text-3xl font-medium sm:text-5xl">Custom feature lighting for commercial spaces.</h2>
+    </div>
+    <figure class="relative mt-8 sm:mt-10" data-parallax="0.06">
+      <div class="absolute inset-8 rounded-[2rem] bg-night-600/50 blur-3xl" aria-hidden="true"></div>
+      <div class="card relative overflow-hidden rounded-[1.75rem] p-2.5 sm:p-3">
+        <div class="relative aspect-[4/3] overflow-hidden rounded-[1.3rem] bg-night-800">
+          <Picture
+            src={featureCeiling}
+            formats={['webp']}
+            fallbackFormat="jpg"
+            widths={[640, 960, 1280, 1600, 2000]}
+            sizes="(min-width: 1440px) 1380px, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
+            loading="lazy"
+            alt="Recessed ceiling with a nebula-print panel and a geometric pendant light fixture with red and blue lamps"
+            class="h-full w-full object-cover object-center"
+          />
+          <div class="pointer-events-none absolute inset-0 rounded-[1.3rem] ring-1 ring-inset ring-white/10"></div>
+        </div>
+        <figcaption class="flex items-center justify-between gap-3 px-2.5 pb-1.5 pt-3.5 text-xs text-slate-400">
+          <span class="flex items-center gap-2"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-volt-400"></span>Feature lighting</span>
+          <span class="font-mono uppercase tracking-[0.16em] text-slate-400">Our work</span>
+        </figcaption>
+      </div>
+    </figure>
   </section>
 
   <!-- SERVICES -->
@@ -296,6 +327,7 @@ const steps = [
 
   <!-- Floating jump-nav (desktop, motion allowed): links to sections that already exist on this page. -->
   <nav class="dock" aria-label="Jump to section">
+    <a href="#feature-lighting">Feature lighting</a>
     <a href="#services">Services</a>
     <a href="#industries">Industries</a>
     <a href="#panels">Panels</a>
